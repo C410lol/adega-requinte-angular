@@ -1,0 +1,33 @@
+<div [ngSwitch]="loadStatus" class="error-box">
+
+    <div *ngSwitchCase="0" class="error-box">
+        <div class="spinner"></div>
+
+        <p class="error-title-txt">Carregando conteúdo...</p>
+    </div>
+
+    <div *ngSwitchCase="2" class="error-box">
+        <img class="error-img" src="../../../assets/empty.png"/>
+
+        <p class="error-title-txt">Não há nada por aqui!</p>
+        <p class="error-desc-txt">Não achamos nenhum conteúdo por aqui, está tudo vazio</p>
+    
+        <div [routerLink]="['/']" class="back-box">
+            <img class="back-img" src="../../../assets/back.png"/>
+            <p class="back-txt">Voltar à pagina inicial</p>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="3" class="error-box">
+        <img class="error-img" src="../../../assets/error.png"/>
+
+        <p class="error-title-txt">Erro ao carregar seu conteúdo!</p>
+        <p class="error-desc-txt">Algo inesperado ocorreu, tente novamente mais tarde</p>
+    
+        <div [routerLink]="['/']" class="back-box">
+            <img class="back-img" src="../../../assets/back.png"/>
+            <p class="back-txt">Voltar à pagina inicial</p>
+        </div>
+    </div>
+
+</div>

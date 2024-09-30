@@ -1,0 +1,24 @@
+<div 
+(click)="selected()" 
+[ngClass]="selectedAddresId == address.id ? 'selected-address': ''" 
+class="address-box"
+>
+
+    <p class="title-txt">{{address.name}}</p>
+
+    <div class="info-box">
+        <p class="info-txt">{{address.street}}</p>
+        <p class="info-txt">{{address.number}}</p>
+    </div>
+
+    <div class="info-box">
+        <p class="info-txt">{{address.neighborhood}}</p>
+        <p class="info-txt">{{address.cep}}</p>
+    </div>
+
+    <div class="info-box">
+        <p class="info-txt">{{address.city}}</p>
+        <p class="info-txt">{{address.state}}</p>
+    </div>
+
+</div>

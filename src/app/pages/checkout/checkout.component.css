@@ -1,0 +1,132 @@
+.checkout-box {
+    padding: 25px;
+}
+
+
+
+
+.content-box {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+
+
+
+.section-box {
+    flex: 0 0 30%;
+    width: 100%;
+    min-width: 400px;
+    max-width: 600px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+
+    border: 1px solid #cecece;
+    border-radius: 5px;
+
+    background-color: white;
+}
+
+.section-title-txt {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+.option-boxes {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.option-box {
+    width: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    border-radius: 5px;
+
+    box-shadow: 0px 0px 10px 2.5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(247, 247, 247);
+
+    cursor: pointer;
+}
+
+.option-box:hover {
+    background-color: #e2e2e2;
+}
+
+.selected-option-box {
+    background-color: #D0C1B2;
+
+    cursor: default;
+}
+
+.selected-option-box:hover {
+    background-color: #D0C1B2;
+}
+
+.option-point {
+    font-size: 40px;
+}
+
+.option-title-txt {
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.option-img {
+    width: 30px;
+    height: 30px;
+}
+
+.option-desc-txt {
+    font-size: 11.5px;
+}
+
+
+
+
+.subinfo-boxes {
+    display: flex;
+    flex-direction: column;
+}
+
+.subinfo-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.subinfo-point {
+    font-size: 30px;
+}
+
+.subinfo-txt {
+    font-size: 12.5px;
+}

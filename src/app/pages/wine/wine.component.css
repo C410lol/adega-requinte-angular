@@ -1,0 +1,214 @@
+.content-box {
+    width: 100%;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+.img-box {
+    width: 100%;
+    max-width: 525px;
+    height: min-content;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-img {
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+}
+
+.wine-img {
+    width: 75%;
+    height: 90%;
+}
+
+
+
+
+.info-box {
+    width: 100%;
+    max-width: 525px;
+
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
+
+    background-color: white;
+}
+
+
+
+
+.maininfo-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.title-txt {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.desc-txt {
+    font-size: 15px;
+    color: gray;
+}
+
+
+
+
+.subinfo-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 7.5px;
+}
+
+.subinfo-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.subinfo-img {
+    width: 20px;
+    height: 20px;
+}
+
+.subinfo-txt {
+    font-size: 15px;
+}
+
+
+
+.buy-box {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.prom-box {
+    width: 100px;
+    height: 20px;
+
+    margin: 5px 0;
+    
+    padding: 12.5px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+
+    background-color: #c71515;
+}
+
+.prom-percentage-txt {
+    color: white;
+}
+
+
+.prices-box {
+    padding: 10px 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-txt {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.smaller-txt {
+    font-size: 25px;
+    text-decoration: line-through;
+}
+
+
+
+
+.btn-boxes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+
+.quantity-box {
+    height: 40px;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+.quantity-img {
+    width: 15px;
+    height: 15px;
+
+    cursor: pointer;
+}
+
+.quantity-txt {
+    font-size: 25px;
+}
+
+
+
+
+.btn-box {
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #03a678;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #058b66;
+}
+
+.btn-txt {
+    color: white;
+    font-weight: 600;
+}

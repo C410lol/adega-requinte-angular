@@ -1,0 +1,11 @@
+@media screen and (width <= 350px) {
+    
+    .info-boxes {
+        flex-wrap: wrap;
+    }
+
+    .right-info-box {
+        width: 100%;
+    }
+
+}

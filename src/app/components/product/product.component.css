@@ -1,0 +1,173 @@
+.product-box {
+    width: 335px;
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #dadada;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+
+    cursor: pointer;
+}
+
+.product-box:hover {
+    box-shadow: 2.5px 2.5px 5px #0000001a;
+}
+
+
+
+
+.img-box {
+    height: 60%;
+
+    padding-top: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wine-img {
+    width: 60%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+.info-box {
+    width: 100%;
+    height: 22.5%;
+
+    padding-top: 10px;
+
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-txt {
+    max-width: 90%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 17.5px;
+}
+
+.prom-box {
+    width: 100px;
+    height: 20px;
+
+    margin: 5px 0;
+    
+    padding: 12.5px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+
+    background-color: #c71515;
+}
+
+.prom-percentage-txt {
+    color: white;
+}
+
+.desc-box {
+    width: 75%;
+    height: 15px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+
+    overflow: hidden;
+}
+
+.desc-box p {
+    font-size: 12.5px;
+    color: #bdbdbd;
+}
+
+
+
+
+
+
+
+
+.btn-box {
+    width: 100%;
+    height: 17.5%;
+
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    background-color: #03a678;
+}
+
+.btn-box:hover {
+    background-color: #058b66;
+}
+
+.btn-box p {
+    text-align: center;
+    color: white;
+}
+
+.price-txt {
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+.prom-price-txt {
+    font-size: 16.5px;
+}
+
+.line-txt {
+    text-decoration: line-through;
+}
+
+.buy-txt {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+.unavailable {
+    background-color: rgb(150, 150, 150);
+}
+
+.unavailable:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+.unavailable p {
+    font-weight: 500;
+}

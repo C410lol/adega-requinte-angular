@@ -1,0 +1,47 @@
+.error-box {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.error-img {
+    width: 200px;
+    height: 200px;
+}
+
+.error-title-txt {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.error-desc-txt {
+    text-align: center;
+}
+
+.back-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5px;
+}
+
+.back-img {
+    width: 15px;
+    height: 15px;
+}
+
+.back-txt {
+    color: #743B19;
+
+    cursor: pointer;
+}
+
+.back-txt:hover {
+    text-decoration: underline;
+}

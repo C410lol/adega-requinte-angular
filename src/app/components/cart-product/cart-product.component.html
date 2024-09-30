@@ -1,0 +1,52 @@
+<div class="cart-product-box">
+    
+    <img class="product-img" src="https://i.imgur.com/YutHoJD.jpg"/>
+
+    <div class="info-box">
+
+        <div class="maininfo-box">
+
+            <div class="descriptions-box">
+
+                <p class="wine-name-txt montserrat-font">{{cartProduct.wine.name}}</p>
+
+                <div class="desc-box">
+
+                    <p class="montserrat-font">{{cartProduct.wine.type}}</p>
+                    <p>&#8226;</p>
+                    <p class="montserrat-font">{{cartProduct.wine.classification}}</p>
+                    <p>&#8226;</p>
+                    <p class="montserrat-font">{{cartProduct.wine.country}}</p>
+
+                </div>
+
+            </div>
+
+            <div class="prices-box">
+
+                <p class="quantity-price-txt montserrat-font">{{cartProduct.quantity}}un. R${{getRoudendPrice()}}</p>
+                <p class="single-price-txt montserrat-font">1un. R${{cartProduct.wine.currentPrice}}</p>
+
+            </div>
+
+        </div>
+
+        <div class="subinfo-box">
+
+            <div class="quantity-box">
+                <img (click)="changeQuantity('minus')" class="quantity-img" src="../../../assets/minus.png"/>
+                <p class="quantity-txt montserrat-font">{{cartProduct.quantity}}</p>
+                <img (click)="changeQuantity('plus')" class="quantity-img" src="../../../assets/increase.png"/>
+            </div>
+
+            <div (click)="deleteCartProduct()" class="btn-box">
+
+                <p class="btn-txt montserrat-font">Excluir</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

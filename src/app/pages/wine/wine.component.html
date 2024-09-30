@@ -1,0 +1,77 @@
+<div class="wine-box page">
+
+    <div class="content-box">
+
+        <div class="img-box">
+
+            <img class="arrow-img back-img" src="../../../assets/back.png"/>
+            <img class="wine-img" src="https://i.imgur.com/YutHoJD.jpgD"/>
+            <img class="arrow-img forward-img" src="../../../assets/forward.png"/>
+
+        </div>
+
+        <div class="info-box">
+
+            <div class="maininfo-box">
+                <p class="title-txt ">{{wine.name}}</p>
+                <p class="desc-txt ">{{wine.description}}</p>
+            </div>
+
+            <div class="subinfo-boxes">
+                <div class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/wine.png"/>
+                    <p class="subinfo-txt ">{{wine.type}}</p>
+                </div>
+                <div class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/info.png">
+                    <p class="subinfo-txt ">{{wine.classification}}</p>
+                </div>
+                <div class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/location.png"/>
+                    <p class="subinfo-txt ">{{wine.country}}</p>
+                </div>
+                <div class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/grapes.png"/>
+                    <p class="subinfo-txt ">{{getGrapes()}}</p>
+                </div>
+            </div>
+
+            <div [ngSwitch]="wine.status" class="buy-box">
+
+                <div *ngSwitchCase="'DISPONÍVEL'">
+                    <div *ngIf="wine.hasProm" class="prom-box">
+                        <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+                    </div>
+
+                    <div class="prices-box">
+                        <p [ngClass]="wine.hasProm ? 'smaller-txt' : ''" class="price-txt">R${{wine.regPrice}}</p>
+                        <p *ngIf="wine.hasProm" class="price-txt">R${{wine.promPrice}}</p>
+                    </div>
+
+                    <div class="btn-boxes">
+    
+                        <div class="quantity-box">
+                            <img (click)="changeQuantity('minus')" class="quantity-img" src="../../../assets/minus.png"/>
+                            <p class="quantity-txt ">{{quantity}}</p>
+                            <img (click)="changeQuantity('plus')" class="quantity-img" src="../../../assets/increase.png"/>
+                        </div>
+                        
+                        <div (click)="addToCart()" class="btn-box">
+                            <p class="btn-txt ">Adicionar</p>
+                        </div>
+    
+                    </div>
+                </div>
+
+                <div *ngSwitchCase="'INDISPONÍVEL'">
+                    <p class="price-txt ">Produto Indisponível</p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,21 @@
+<div class="order-product-box">
+
+    <img class="product-img" src="https://i.imgur.com/YutHoJD.jpg" />
+
+    <div class="product-info">
+        <p class="product-name">{{cartProduct.wine.name}}</p>
+        <div class="product-subinfo-box">
+            <p>{{cartProduct.wine.type}}</p>
+            <p>&#8226;</p>
+            <p>{{cartProduct.wine.classification}}</p>
+            <p>&#8226;</p>
+            <p>{{cartProduct.wine.country}}</p>
+        </div>
+    </div>
+
+    <div class="product-info product-prices-box">
+        <p class="product-price">1un. R${{cartProduct.wine.currentPrice}}</p>
+        <p class="product-total-price">{{cartProduct.quantity}}un. R${{getRoundedPrice()}}</p>
+    </div>
+
+</div>

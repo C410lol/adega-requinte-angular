@@ -1,0 +1,21 @@
+<div class="order-product-box">
+
+    <img class="product-img" src="https://i.imgur.com/YutHoJD.jpg" />
+
+    <div class="product-info">
+        <p class="product-name">{{orderProduct.product.name}}</p>
+        <div class="product-subinfo-box">
+            <p>{{orderProduct.product.type}}</p>
+            <p>&#8226;</p>
+            <p>{{orderProduct.product.classification}}</p>
+            <p>&#8226;</p>
+            <p>{{orderProduct.product.country}}</p>
+        </div>
+    </div>
+
+    <div class="product-info product-prices-box">
+        <p class="product-price">1un. R${{orderProduct.product.regPrice}}</p>
+        <p class="product-total-price">{{orderProduct.quantity}}un. R${{orderProduct.totalPrice}}</p>
+    </div>
+
+</div>

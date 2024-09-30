@@ -1,0 +1,8 @@
+@media screen and (width <= 1024px){
+
+    .products-box,
+    .payment-box {
+        flex: 0 0 100%;
+    }
+   
+}

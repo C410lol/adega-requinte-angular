@@ -1,0 +1,57 @@
+<div (click)="goToOrder()" class="order-box">
+
+    <div class="header-box">
+        <p class="order-id-txt">#{{order.orderNumber}}</p>
+        <div class="status-box">
+            <img *ngIf="order.status == 'CANCELADO'" class="status-img" src="../../../assets/status_red.png"/>
+            <img *ngIf="order.status == 'CONFIRMANDO'" class="status-img" src="../../../assets/status_yellow.png" />
+            <img *ngIf="order.status == 'CONFIRMADO'" class="status-img" src="../../../assets/status_green.png" />
+            <img *ngIf="order.status == 'ENTREGUE'" class="status-img" src="../../../assets/status_normal.png" />
+
+            <p class="status-txt">{{getFormatedEnum(order.status)}}</p>
+        </div>
+    </div>
+
+    <hr class="division-line" />
+
+    <div class="info-boxes">
+
+        <div class="info-box">
+
+            <div class="subinfo-box">
+
+                <p class="info-title-txt">Produtos</p>
+
+                <div class="products-list-box">
+    
+                    <div 
+                    *ngFor="let orderProduct of order.orderProducts"
+                    class="product-box">
+                        <p class="product-title-txt product-txt">{{orderProduct.product.name}}</p>
+                        <p class="product-quantity-txt product-txt">{{orderProduct.quantity}}un.</p>
+                    </div>
+    
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="info-box right-info-box">
+
+            <div class="subinfo-box">
+                <p class="info-title-txt">{{getFormatedDate()}}</p>
+
+                <div class="payment-box">
+                    <p>{{getFormatedEnum(order.delivery)}}</p>
+                    <p>{{getFormatedEnum(order.payment)}}</p>
+                </div>
+            </div>
+
+            <p class="total-price-txt">R${{order.totalPrice}}</p>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+<div 
+(click)="goToWinePage()" 
+class="product-box"
+>
+
+   <div class="img-box">
+
+    <img class="wine-img" src="https://i.imgur.com/YutHoJD.jpgD"/>
+
+   </div>
+
+   <div class="info-box">
+
+    <div *ngIf="wine.hasProm && wine.status == 'DISPONÍVEL'" class="prom-box">
+
+        <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+
+    </div>
+
+    <p class="name-txt ">{{wine.name}}</p>
+
+    <div class="desc-box">
+        <p class="">{{wine.type}}</p>
+        <p>&#8226;</p>
+        <p class="">{{wine.type}}</p>
+        <p>&#8226;</p>
+        <p class="hidden-txt ">{{getFirtsGrape()}}</p>
+    </div>
+
+   </div>
+
+   <div
+   [ngSwitch]="wine.status"
+   [ngClass]="wine.status == 'INDISPONÍVEL' ? 'unavailable' : ''" 
+   class="btn-box">
+
+    <div *ngSwitchCase="'DISPONÍVEL'">
+        <p [ngClass]="wine.hasProm ? 'line-txt' : 'price-txt'" class="price-txt">R${{wine.regPrice}}</p>
+        <p *ngIf="wine.hasProm" class="prom-price-txt price-txt">R${{wine.promPrice}}</p>
+
+        <p class="buy-txt">Comprar</p>
+    </div>
+    
+    <p *ngSwitchCase="'INDISPONÍVEL'">Indisponível</p>
+
+   </div>
+
+</div>

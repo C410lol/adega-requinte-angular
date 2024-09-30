@@ -1,0 +1,18 @@
+<div class="admin-orders-box page">
+
+    <div class="content-box">
+
+        <p class="page-title-txt">Gerenciar Pedidos</p>
+        
+        <div class="products-box">
+
+            <app-admin-order 
+            *ngFor="let order of orders"
+            [order]="order"
+            />
+
+        </div>
+
+    </div>
+
+</div>

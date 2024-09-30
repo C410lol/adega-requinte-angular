@@ -1,0 +1,194 @@
+<app-back />
+
+
+
+
+<div [ngSwitch]="loadStatus" class="admin-product-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
+        
+        <p class="page-title-txt">Produto</p>
+
+        <div class="form-box">
+
+            <div class="input-box">
+
+                <p class="input-title-txt">Imagens:</p>
+                <input (change)="selectImage($event)" id="fileinput" type="file" hidden multiple accept="image/*" />
+                <label for="fileinput" class="input img-input">Selecionar imagens</label>
+
+                <div class="img-boxes">
+                    <div
+                    *ngFor="let image of selectedImages"
+                    class="img-box">
+                        <img (click)="deleteSelectedImage(image)" class="img-delete" src="../../../assets/trash.png" />
+                        <img
+                        class="img"
+                        [src]="image" 
+                        />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="input-box">
+                <p class="input-title-txt">Nome:</p>
+                <input [(ngModel)]="name" class="input" placeholder="Nome..." />
+            </div>
+
+            <div class="input-box">
+                <p class="input-title-txt">Descrição:</p>
+                <input [(ngModel)]="description" class="input" placeholder="Descrição..." />
+            </div>
+            
+            <div class="wrap-input-boxes">
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Categoria:</p>
+                    <select [(ngModel)]="type" class="input">
+                        <option>Tinto</option>
+                        <option>Branco</option>
+                        <option>Rosé</option>
+                        <option>Espumante</option>
+                        <option value="Vinho_de_Sobremesa">Vinho de Sobremesa</option>
+                    </select>
+                </div>
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">País:</p>
+                    <select [(ngModel)]="country" class="input">
+                        <option>Brasil</option>
+                        <option>Argentina</option>
+                        <option>Chile</option>
+                        <option>Portugal</option>
+                        <option>Itália</option>
+                        <option>França</option>
+                    </select>
+                </div>
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Classificação:</p>
+                    <select [(ngModel)]="classification" class="input">
+                        <option>Nature</option>
+                        <option value="Extra_Brut">Extra Brut</option>
+                        <option>Brut</option>
+                        <option>Moscatel</option>
+                        <option value="Demi_Sec">Demi Sec</option>
+                        <option>Seco</option>
+                        <option>Suave</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="wrap-input-boxes">
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Tamanho:</p>
+                    <input [(ngModel)]="size" class="input" placeholder="1L, 750ml..." />
+                </div>
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Estoque:</p>
+                    <input [(ngModel)]="quantity" class="input" type="number" />
+                </div>
+
+            </div>
+
+            <div class="input-box">
+                <p class="input-title-txt">Uvas:</p>
+                <div class="grapes-input-box">
+                    <div
+                    *ngFor="let selectedGrape of selectedGrapes"
+                    class="grape-box">
+                    <p>{{selectedGrape.name}}</p>
+                    <p (click)="removeSelectedGrape(selectedGrape)" class="exclude-txt">&#10005;</p>
+                    </div>
+
+                    <input 
+                    [(ngModel)]="grape" 
+                    (input)="findGrapesByName()"
+                    (focus)="isGrapesDropDownShown = true"
+                    (blur)="timeoutDropDown()"
+                    class="input non-box-shadow" 
+                    />
+
+                    <div (click)="createSelectedGrape()" class="grape-btn-box">
+                        <p class="grape-btn-txt">Adicionar</p>
+                    </div>
+                </div>
+
+                <app-dropdown 
+                [items]="allGrapes"
+                [isShown]="isGrapesDropDownShown"
+                (clickItem)="addSelectedGrape($event)"
+                />
+            </div>
+
+            <div class="wrap-input-boxes">
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Promocional:</p>
+                    <select [(ngModel)]="hasProm" class="input">
+                        <option value="false">NÃO</option>
+                        <option value="true">SIM</option>
+                    </select>
+                </div>
+
+                <div *ngIf="hasProm == 'true'" class="input-box wrap-input-box">
+                    <p class="input-title-txt">Preço promocional:</p>
+                    <div class="price-input-box">
+                        <p class="reais-txt">R$</p>
+                        <input [(ngModel)]="promPrice" (input)="promPriceInputCheck()" class="input non-box-shadow" placeholder="00.00" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="wrap-input-boxes">
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Preço regular:</p>
+                    <div class="price-input-box">
+                        <p class="reais-txt">R$</p>
+                        <input [(ngModel)]="price" (input)="priceInputCheck()" class="input non-box-shadow" placeholder="00.00" />
+                    </div>
+                </div>
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Status:</p>
+                    <select [(ngModel)]="status" class="input">
+                        <option>DISPONÍVEL</option>
+                        <option>INDISPONÍVEL</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="btn-boxes">
+                <div (click)="saveBtnClick()" class="btn-box">
+                    <p class="btn-txt">Salvar</p>
+                </div>
+                <div *ngIf="ifProductExists" (click)="deleteActionDialog()" class="btn-box red-btn">
+                    <p class="btn-txt">Deletar</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
+
+</div>

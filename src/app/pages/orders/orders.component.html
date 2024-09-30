@@ -1,0 +1,25 @@
+<div [ngSwitch]="loadStatus" class="orders-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
+
+        <p class="title-txt">Pedidos</p>
+
+        <div class="orders-list-box">
+
+            <app-order 
+            *ngFor="let order of orders"
+            [order]="order"
+            />
+
+        </div>
+
+    </div>
+
+
+
+    
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
+
+</div>

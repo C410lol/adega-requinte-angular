@@ -1,0 +1,158 @@
+.cart-product-box {
+    width: 100%;
+    min-width: 150px;
+
+    padding: 20px;
+    padding-left: 30px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    border: 1px solid #cecece;
+    border-radius: 5px;
+
+    background-color: white;
+}
+
+.product-img {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
+.info-box {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+.maininfo-box {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    row-gap: 10px;
+}
+
+
+
+
+.wine-name-txt {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.desc-box {
+    width: 75%;
+    height: 15px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+    overflow: hidden;
+}
+
+.desc-box p {
+    font-size: 12.5px;
+    color: #bdbdbd;
+}
+
+
+
+
+.prices-box {
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.quantity-price-txt {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.single-price-txt {
+    font-size: 15px;
+    color: #aaaaaa;
+}
+
+
+
+
+.subinfo-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+.quantity-box {
+    width: min-content;
+    height: 25px;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+}
+
+.quantity-img {
+    width: 10px;
+    height: 10px;
+
+    cursor: pointer;
+}
+
+.quantity-txt {
+    font-size: 17.5px;
+}
+
+
+
+
+.btn-box {
+    width: 50%;
+    max-width: 150px;
+    height: 25px;
+
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e71717;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #e71717;
+}
+
+.btn-txt {
+    font-size: 15px;
+    color: #e71717;
+}
+
+.btn-box:hover .btn-txt {
+    color: white;
+}

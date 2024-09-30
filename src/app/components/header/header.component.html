@@ -1,0 +1,185 @@
+<div class="header-box">
+
+    <div [routerLink]="['/']" class="title-box">
+        <img class="logo-img" src="../../../assets/logo.png"/>
+    </div>
+
+    <div class="search-box">
+        <img class="search-img" src="../../../assets/search.png"/>
+
+        <input class="search-input" placeholder="Procurar vinho"/>
+    </div>
+
+    <div class="user-box normal-user-box">
+        <p *ngIf="!isLogged" [routerLink]="['/login']" class="login-txt">Entrar</p>
+        <div *ngIf="isLogged" (mouseenter)="enterAccountTxt()" (mouseleave)="leaveAccountTxt()">
+
+            <p class="login-txt">Minha Conta</p>
+
+            <div *ngIf="isOnAccountTxt" class="account-box">
+
+                <div class="account-content-box">
+        
+                    <div class="account-section">
+        
+                        <img class="section-img" src="../../../assets/user.png"/>
+                        <p class="section-txt">{{user.email}}</p>
+        
+                    </div>
+
+                    <hr class="division-line" />
+                    
+                    <div (click)="clickUserItem('orders')" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/order.png" />
+                        <p class="section-txt">Pedidos</p>
+        
+                    </div>
+
+                    <hr class="division-line" />
+                    
+                    <div (click)="logout()" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/logout.png"/>
+                        <p class="section-txt">Sair</p>
+        
+                    </div>
+                    
+        
+                </div>
+        
+            </div>
+
+        </div>
+
+        <div *ngIf="isLogged && user.role == 'ROLE_ADMIN'" (mouseenter)="enterAdminTxt()" (mouseleave)="leaveAdminTxt()">
+
+            <p class="login-txt">Admin</p>
+
+            <div *ngIf="isOnAdminTxt" class="account-box">
+
+                <div class="account-content-box">
+        
+                    <div (click)="clickUserItem('admin-products')" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/products.png"/>
+                        <p class="section-txt">Produtos</p>
+        
+                    </div>
+
+                    <hr class="division-line" />
+                    
+                    <div (click)="clickUserItem('admin-orders')" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/orders.png" />
+                        <p class="section-txt">Pedidos</p>
+        
+                    </div>
+
+                    <hr class="division-line" />
+                    
+                    <div (click)="logout()" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/users.png"/>
+                        <p class="section-txt">Usuários</p>
+        
+                    </div>
+                    
+        
+                </div>
+        
+            </div>
+
+        </div>
+
+        <img [routerLink]="['/cart']" class="cart-img" src="../../../assets/cart.png"/>
+    </div>
+
+    <div (mouseenter)="enterAccountTxt()" (mouseleave)="leaveAccountTxt()" class="user-box mobile-user-box">
+
+        <img class="cart-img" src="../../../assets/menu.png"/>
+        <div *ngIf="isOnAccountTxt" class="account-box mobile-account-box">
+
+            <div class="account-content-box">
+    
+                <div *ngIf="isLogged" class="account-section">
+    
+                    <img class="section-img" src="../../../assets/user.png"/>
+                    <p class="section-txt">{{user.email}}</p>
+    
+                </div>
+
+                <div *ngIf="!isLogged" (click)="clickUserItem('login')" class="account-section">
+    
+                    <img class="section-img" src="../../../assets/user.png"/>
+                    <p class="section-txt">Entrar</p>
+    
+                </div>
+
+                <hr class="division-line" />
+                
+                <div *ngIf="isLogged" (click)="clickUserItem('orders')" class="account-section">
+    
+                    <img class="section-img" src="../../../assets/order.png" />
+                    <p class="section-txt">Pedidos</p>
+    
+                </div>
+
+                <hr *ngIf="isLogged" class="division-line" />
+
+                <div (click)="clickUserItem('cart')" class="account-section">
+    
+                    <img class="section-img" src="../../../assets/cart.png" />
+                    <p class="section-txt">Carrinho</p>
+    
+                </div>
+
+                <hr *ngIf="isLogged" class="division-line" />
+                
+                <div *ngIf="isLogged" (click)="logout()" class="account-section">
+    
+                    <img class="section-img" src="../../../assets/logout.png"/>
+                    <p class="section-txt">Sair</p>
+    
+                </div>
+
+                <div *ngIf="isLogged && user.role == 'ROLE_ADMIN'" class="admin-box account-content-box">
+
+                    <p class="separation-txt">Admin</p>
+
+                    <div class="account-section">
+            
+                        <img class="section-img" src="../../../assets/products.png"/>
+                        <p class="section-txt">Produtos</p>
+        
+                    </div>
+    
+                    <hr class="division-line" />
+                    
+                    <div (click)="clickUserItem('admin-orders')" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/orders.png" />
+                        <p class="section-txt">Pedidos</p>
+        
+                    </div>
+    
+                    <hr class="division-line" />
+                    
+                    <div (click)="logout()" class="account-section">
+        
+                        <img class="section-img" src="../../../assets/users.png"/>
+                        <p class="section-txt">Usuários</p>
+        
+                    </div>
+
+                </div>   
+    
+            </div>
+    
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="isOnAccountTxt || isOnAdminTxt" class="mask-filter"></div>

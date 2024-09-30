@@ -1,0 +1,18 @@
+<div class="dialog-box">
+
+    <div class="content-box">
+
+        <img *ngIf="data.status == 0" class="status-img" src="../../../assets/correct.png"/>
+        <img *ngIf="data.status == 1" class="status-img" src="../../../assets/attention.png"/>
+        <img *ngIf="data.status == 2" class="status-img" src="../../../assets/wrong.png"/>
+
+        <div class="info-box">
+            <p *ngIf="data.status == 0 || data.status == 1" class="title-txt">{{data.title}}</p>
+            <p *ngIf="data.status == 2" class="title-txt">Algo não deu certo!</p>
+
+            <p class="subtitle-txt">{{data.message}}</p>
+        </div>
+
+    </div>
+
+</div>

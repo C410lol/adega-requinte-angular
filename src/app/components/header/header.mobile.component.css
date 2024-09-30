@@ -1,0 +1,23 @@
+@media screen and (width <= 1000px){
+
+    .header-box {
+        padding: 20px;
+    }
+
+    .title-txt {
+        width: min-content;
+    }
+
+    .user-box {
+        gap: 0;
+    }
+
+    .normal-user-box {
+        display: none;
+    }
+
+    .mobile-user-box {
+        display: flex;
+    }
+
+}

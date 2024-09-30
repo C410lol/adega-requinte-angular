@@ -1,0 +1,27 @@
+.back-box {
+    position: static;
+
+    margin-top: 25px;
+    margin-left: 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-img {
+    width: 15px;
+    height: 15px;
+}
+
+.back-txt {
+    font-size: 15px;
+    color: #743B19;
+
+    cursor: pointer;
+}
+
+.back-txt:hover {
+    text-decoration: underline;
+}

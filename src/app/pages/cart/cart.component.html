@@ -1,0 +1,61 @@
+<div [ngSwitch]="loadStatus" class="cart-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
+
+        <div class="products-box">
+
+            <p class="products-title-txt montserrat-font">Meu Carrinho</p>
+    
+            <div class="cart-products-box">
+
+                <app-cart-product 
+                *ngFor="let product of cartProducts"
+                [cartProduct]="product"
+                (totalPriceChangeEvent)="updateTotalPrice($event)"
+                (deleteProductEvent)="getCartProducts()"
+                />
+
+            </div>
+    
+        </div>
+    
+        <div class="payment-box">
+    
+            <p class="payment-title-txt montserrat-font">Resumo da Compra</p>
+            
+            <div class="price-boxes">
+
+                <div class="price-box">
+
+                    <p class="montserrat-font">Subtotal</p>
+                    <p class="montserrat-font">R${{getTotalPriceRounded()}}</p>
+    
+                </div>
+    
+                <div class="price-box">
+    
+                    <p class="total-txt montserrat-font">Total</p>
+                    <p class="total-txt montserrat-font">R${{getTotalPriceRounded()}}</p>
+    
+                </div>
+    
+                <div (click)="goToCheckoutPage()" class="btn-box">
+
+                    <p class="btn-txt montserrat-font">Comprar</p>
+
+                </div>
+
+            </div>
+    
+        </div>
+
+    </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
+
+</div>

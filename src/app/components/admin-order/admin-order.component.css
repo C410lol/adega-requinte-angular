@@ -1,0 +1,145 @@
+.order-box {
+    width: 100%;
+    max-width: 600px;
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    border-radius: 5px;
+
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.order-box:hover {
+    background-color: rgb(236, 236, 236);
+}
+
+
+
+
+.header-box {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-id-txt {
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.status-box {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.status-img {
+    width: 20px;
+    height: 20px;
+}
+
+.status-txt {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+.info-boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.info-box {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.info-title-txt {
+    font: 15px;
+    font-weight: 500;
+}
+
+.subinfo-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+
+.products-list-box {
+    width: 75%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-txt {
+    font-size: 12.5px;
+    color: rgb(153, 153, 153);
+}
+
+.product-title-txt {
+    max-width: 75%;
+
+    white-space: nowrap;   
+    overflow: hidden;          
+    text-overflow: ellipsis; 
+}
+
+
+
+
+.right-info-box {
+    text-align: end;
+}
+
+.payment-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.payment-box p {
+    font-size: 12.5px;
+    color: rgb(153, 153, 153);
+}
+
+.total-price-txt {
+    margin-top: 15px;
+
+    font-size: 17.5px;
+    font-weight: 600;
+
+    color: #027e5b;
+}

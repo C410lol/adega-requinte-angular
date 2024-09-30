@@ -1,0 +1,205 @@
+.info-box {
+    width: 100%;
+
+    margin-top: 50px;
+
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    gap: 10%;
+}
+
+.title-txt {
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+
+.products-box {
+    flex: 0 0 60%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.products-title-txt {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.cart-products-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+
+
+
+
+.payment-and-address-boxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.subinfo-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.subinfo-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.subinfo-point {
+    font-size: 30px;
+}
+
+.subinfo-txt {
+    font-size: 12.5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.address-box {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.address-title-txt {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.address-info-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.address-info-txt {
+    font-size: 12.5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.payment-box {
+    flex: 0 0 30%;
+    width: 100%;
+}
+
+.payment-title-txt {
+    margin-bottom: 15px;
+
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.price-boxes {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.price-box {
+    width: 100%;
+    height: 60px;
+
+    padding: 20px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid #cecece;
+    border-radius: 5px;
+
+    background-color: white;
+}
+
+.price-box p {
+    font-size: 15px;
+}
+
+.total-txt {
+    font-weight: 600;
+}
+
+
+
+
+.btn-box {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #c71515;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #a11212;
+}
+
+.btn-txt {
+    color: white;
+    font-weight: 600;
+}

@@ -1,0 +1,97 @@
+p:hover {
+    color: #e24242;
+}
+
+
+
+
+.header-box {
+    width: 100%;
+    height: 80px;
+    padding: 10px 50px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fffbf7;
+}
+
+
+
+.title-box {
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 90px;
+    height: 90px;
+}
+
+
+
+
+.search-box {
+    width: 50%;
+    height: 50px;
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+
+    border: 1px solid #bdbdbdc9;
+    border-radius: 2.5px;
+}
+
+.search-img {
+    width: 20px;
+    height: 20px;
+}
+
+.search-input {
+    width: 100%;
+    height: 30px;
+
+    outline: none;
+
+    border: 0;
+    background-color: transparent;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+}
+
+
+
+
+.user-box {
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 75px;
+}
+
+.mobile-user-box {
+    display: none;
+}
+
+.login-txt {
+    cursor: pointer;
+
+    font-family: "Montserrat", sans-serif;
+}
+
+.cart-img {
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+}

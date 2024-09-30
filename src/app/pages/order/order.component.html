@@ -1,0 +1,165 @@
+<app-back />
+
+
+
+
+<div [ngSwitch]="loadStatus" class="order-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
+
+        <p class="title-txt">Pedido #{{order.orderNumber}}</p>
+
+        <div class="info-box">
+
+            <div class="products-box">
+
+                <p class="products-title-txt montserrat-font">Produtos</p>
+        
+                <div class="cart-products-box">
+    
+                    <app-order-product
+                    *ngFor="let orderProduct of order.orderProducts"
+                    [orderProduct]="orderProduct" 
+                    />
+    
+                </div>
+
+                <div class="payment-and-address-boxes">
+
+                    <div *ngIf="order.payment != 'DINHEIRO'" [ngSwitch]="order.payment" class="payment-details-box">
+
+                        <p class="products-title-txt">Pagamento</p>
+
+                        <div *ngSwitchCase="'PIX'" class="subinfo-boxes">
+                    
+                            <div class="subinfo-box">
+                                <p class="subinfo-point">&#8226;</p>
+                                <p class="subinfo-txt">Chave PIX - 537.998.268-90</p>
+                            </div>
+        
+                            <div class="subinfo-box">
+                                <p class="subinfo-point">&#8226;</p>
+                                <p class="subinfo-txt">Enviar comprovante - (15) 99816-0059</p>
+                            </div>
+                            
+                        </div>
+        
+                        <div *ngSwitchCase="'CARTÃO'" class="subinfo-boxes">
+                            
+                            <div class="subinfo-box">
+                                <p class="subinfo-point">&#8226;</p>
+                                <p class="subinfo-txt">Aproximação ou inserção do cartão</p>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                    <div [ngSwitch]="order.delivery" class="address-box">
+
+                        <p class="products-title-txt">Endereço</p>
+
+                        <div *ngSwitchCase="'PEGAR'" class="subinfo-boxes">
+                    
+                            <div class="subinfo-box">
+                                <p class="subinfo-point">&#8226;</p>
+                                <p class="subinfo-txt">Retirada no endereço - Maestro Carlos Spino do Nascimento, 240, Jardim Paraíso</p>
+                            </div>
+        
+                            <div class="subinfo-box">
+                                <p class="subinfo-point">&#8226;</p>
+                                <p class="subinfo-txt">Das 09h às 19h</p>
+                            </div>
+                            
+                        </div>
+
+                        <div *ngSwitchCase="'ENTREGAR'" class="subinfo-boxes">
+
+                            <p class="address-title-txt">{{order.address?.name}}</p>
+    
+                            <div class="address-info-box">
+                                <p class="address-info-txt">{{order.address?.street}},</p>
+                                <p class="address-info-txt">{{order.address?.number}}</p>
+                            </div>
+                        
+                            <div class="address-info-box">
+                                <p class="address-info-txt">{{order.address?.neighborhood}},</p>
+                                <p class="address-info-txt">{{order.address?.cep}}</p>
+                            </div>
+                        
+                            <div class="address-info-box">
+                                <p class="address-info-txt">{{order.address?.city}},</p>
+                                <p class="address-info-txt">{{order.address?.state}}</p>
+                            </div>
+
+                        </div>
+    
+                    </div>
+
+                </div>
+        
+            </div>
+        
+            <div class="payment-box">
+        
+                <p class="payment-title-txt montserrat-font">Informações</p>
+                
+                <div class="price-boxes">
+
+                    <div class="price-box">
+    
+                        <p class="montserrat-font">Data</p>
+                        <p class="montserrat-font">{{getFormatedDate()}}</p>
+        
+                    </div>
+
+                    <div class="price-box">
+    
+                        <p class="montserrat-font">Status</p>
+                        <p class="montserrat-font">{{getFormatedEnum(order.status)}}</p>
+        
+                    </div>
+
+                    <div class="price-box">
+    
+                        <p class="montserrat-font">Envio</p>
+                        <p class="montserrat-font">{{getFormatedEnum(order.delivery)}}</p>
+        
+                    </div>
+
+                    <div class="price-box">
+    
+                        <p class="montserrat-font">Pagamento</p>
+                        <p class="montserrat-font">{{getFormatedEnum(order.payment)}}</p>
+        
+                    </div>
+
+                    <div *ngIf="order.payment == 'DINHEIRO'" class="price-box">
+    
+                        <p class="montserrat-font">Troco</p>
+                        <p class="montserrat-font">R${{order.exchange}}</p>
+        
+                    </div>
+        
+                    <div class="price-box">
+        
+                        <p class="total-txt montserrat-font">Total</p>
+                        <p class="total-txt montserrat-font">R${{order.totalPrice}}</p>
+        
+                    </div>
+
+                    <div *ngIf="order.status != 'CANCELADO' && order.status != 'ENTREGUE'" (click)="cancelActionDialog()" class="btn-box">
+
+                        <p class="btn-txt montserrat-font">Cancelar Compra</p>
+    
+                    </div>
+    
+                </div>
+        
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

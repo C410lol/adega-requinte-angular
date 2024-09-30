@@ -1,0 +1,319 @@
+<div class="checkout-box page">
+
+    <div class="content-box">
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="delivery-box section-box">
+
+            <p class="section-title-txt">Opções de entrega</p>
+
+            <div class="option-boxes">
+
+                <div 
+                (click)="changeDelivery('PEGAR'); removeDeliveryTax()" 
+                [ngClass]="selectedDelivery == 'PEGAR' ? 'selected-option-box' : ''" 
+                class="option-box"
+                >
+                    <img class="option-img" src="../../../assets/home.png" />
+
+                    <div class="option-info-box">
+                        <p class="option-title-txt">RETIRADA NA ADEGA</p>
+                        <p class="option-desc-txt">Maestro Carlos Spino do Nascimento, 240, Jardim Paraíso</p>
+                    </div>
+                </div>
+
+                <div 
+                (click)="changeDelivery('ENTREGAR'); addDeliveryTax()" 
+                [ngClass]="selectedDelivery == 'ENTREGAR' ? 'selected-option-box' : ''" 
+                class="option-box"
+                >
+                    <img class="option-img" src="../../../assets/delivery.png" />
+
+                    <div class="option-info-box">
+                        <p class="option-title-txt">ENTREGA NO ENDEREÇO</p>
+                        <p class="option-desc-txt">Indique o endereço de entrega abaixo</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <div [ngSwitch]="selectedDelivery" class="details-box">
+
+                <div *ngSwitchCase="'PEGAR'" class="subinfo-boxes">
+                    
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Retirada no endereço - Maestro Carlos Spino do Nascimento, 240, Jardim Paraíso</p>
+                    </div>
+
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Das 09h às 19h</p>
+                    </div>
+
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Não é cobrado nenhuma taxa</p>
+                    </div>
+                    
+                </div>
+
+                <div *ngSwitchCase="'ENTREGAR'" class="delivery-form-box">
+
+                    <p class="form-title-txt">Selecione o endereço</p>
+
+                    <app-address 
+                    *ngFor="let address of userAddresses"
+                    [address]="address" [selectedAddresId]="selectedAddress"
+                    (selectAddress)="selectedAddress = address.id"
+                    />
+
+                    <div 
+                    (click)="selectedAddress = null"
+                    [ngClass]="selectedAddress == null ? 'selected-option-box' : ''" 
+                    class="option-box"
+                    >
+                        <div class="option-info-box">
+                            <p class="option-title-txt">Adicionar novo endereço</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="selectedAddress == null">
+
+                        <p class="form-title-txt">Endereço de entrega</p>
+
+                        <div class="address-form">
+    
+                            <div class="address-input-box">
+                                <p>Nome*</p>
+                                <input (input)="getCepInformations()" [(ngModel)]="name" placeholder="Ex. Casa, Trabalho"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>CEP*</p>
+                                <input (input)="getCepInformations()" [(ngModel)]="cep" placeholder="00000-000"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Rua*</p>
+                                <input [(ngModel)]="street" placeholder="Rua 10 de Setembro"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Número*</p>
+                                <input [(ngModel)]="number" placeholder="123"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Complemento</p>
+                                <input [(ngModel)]="complement" placeholder="Apartamento 123"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Ponto de referência*</p>
+                                <input [(ngModel)]="referencePoint" placeholder="Perto do restaurante"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Bairro*</p>
+                                <input [(ngModel)]="neighborhood" placeholder="Centro"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Cidade*</p>
+                                <input [(ngModel)]="city" [disabled]="isDisabled" placeholder="Campinas"/>
+                            </div>
+    
+                            <div class="address-input-box">
+                                <p>Estado*</p>
+                                <input [(ngModel)]="state" [disabled]="isDisabled" placeholder="São Paulo"/>
+                            </div>
+    
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+    
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <div class="section-box">
+
+            <p class="section-title-txt">Método de pagamento</p>
+
+            <div class="option-boxes">
+
+                <div 
+                (click)="changePayment('PIX')"
+                [ngClass]="selectedPayment == 'PIX' ? 'selected-option-box' : ''"
+                class="option-box"
+                >
+                    <img class="option-img" src="../../../assets/pix.png" />
+
+                    <div class="payment-option-info-box option-info-box">
+                        <p class="option-title-txt">PIX</p>
+                    </div>
+                </div>
+
+                <div 
+                (click)="changePayment('CARTÃO')"
+                [ngClass]="selectedPayment == 'CARTÃO' ? 'selected-option-box' : ''"
+                class="option-box"
+                >
+                    <img class="option-img" src="../../../assets/credit_card.png" />
+
+                    <div class="payment-option-info-box option-info-box">
+                        <p class="option-title-txt">Cartão de crédito/débito</p>
+                    </div>
+                </div>
+
+                <div 
+                (click)="changePayment('DINHEIRO')"
+                [ngClass]="selectedPayment == 'DINHEIRO' ? 'selected-option-box' : ''"
+                class="option-box"
+                >
+                    <img class="option-img" src="../../../assets/cash.png" />
+
+                    <div class="payment-option-info-box option-info-box">
+                        <p class="option-title-txt">Dinheiro</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div [ngSwitch]="selectedPayment" class="details-box">
+
+                <div *ngSwitchCase="'PIX'" class="subinfo-boxes">
+                    
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Chave PIX - 537.998.268-90</p>
+                    </div>
+
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Enviar comprovante - (15) 99816-0059</p>
+                    </div>
+                    
+                </div>
+
+                <div *ngSwitchCase="'CARTÃO'" class="subinfo-boxes">
+                    
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Aproximação ou inserção do cartão</p>
+                    </div>
+                    
+                </div>
+
+                <div *ngSwitchCase="'DINHEIRO'" class="subinfo-boxes">
+                    
+                    <div class="subinfo-box">
+                        <p class="subinfo-point">&#8226;</p>
+                        <p class="subinfo-txt">Troco para:</p>
+                    </div>
+                    
+                    <div class="exchange-input-box">
+                        <p class="reais-txt">R$</p>
+                        <input [(ngModel)]="exchange" (input)="exhcnageInputCheck()" class="payment-input" placeholder="00.00" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    
+        <div class="section-box">
+
+            <p class="section-title-txt">Confirmar pedido</p>
+
+            <div class="option-boxes">
+
+                <app-checkout-product 
+                *ngFor="let cartProduct of cartProducts"
+                [cartProduct]="cartProduct"
+                />
+
+            </div>
+
+            <div class="price-boxes">
+
+                <div class="price-box">
+                    <p>Subtotal</p>
+                    <p>R${{getPriceRounded(subtotalPrice)}}</p>
+                </div>
+
+                <hr class="division-line" />
+
+                <div *ngIf="selectedDelivery == 'ENTREGAR'" class="price-box">
+                    <p>Entrega</p>
+                    <p>R$5,00</p>
+                </div>
+
+                <hr *ngIf="selectedDelivery == 'ENTREGAR'" class="division-line" />
+
+                <div class="price-box">
+                    <p class="total-price-txt">Total</p>
+                    <p class="total-price-txt">R${{getPriceRounded(totalPrice)}}</p>
+                </div>
+
+            </div>
+
+            <div (click)="finalizeShop()" class="btn-box">
+                <p class="btn-txt">Finalizar Compra</p>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>

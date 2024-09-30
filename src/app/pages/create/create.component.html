@@ -1,0 +1,33 @@
+<app-back />
+
+
+
+
+<div class="create-box page">
+
+    <div class="titles-box">
+        <p class="title-txt montserrat-font">Crie sua Conta</p>
+        <p class="subtitle-txt montserrat-font">São poucos passos para criar seu login!</p>
+    </div>
+    
+
+    <div class="form-box">
+
+        <input [(ngModel)]="name" class="input" type="text" placeholder="Nome e Sobrenome"/>
+        <input [(ngModel)]="email" class="input" type="text" placeholder="Email"/>
+        <input [(ngModel)]="phone" class="input" type="tel" placeholder="Celular"/>
+        <input [(ngModel)]="password" class="input" type="password" placeholder="Senha"/>
+        <input [(ngModel)]="confPassword" class="input" type="password" placeholder="Confirme a senha"/>
+
+    </div>
+
+    <div (click)="createUser()" class="btn-box">
+
+        <p class="btn-txt montserrat-font">Criar</p>
+
+    </div>
+
+    <p class="info-txt montserrat-font">Já possue uma conta? <span (click)="goToLoginPage()" class="create-txt montserrat-font">Faça o login agora</span></p>
+
+</div>
+

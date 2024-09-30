@@ -1,0 +1,41 @@
+<div (click)="goToAdminProductPage()" class="admin-product-box">
+
+    <div class="header-box">
+
+        <img *ngIf="product.status == 'DISPONÍVEL'" class="header-img" src="../../../assets/status_green.png" />
+        <img *ngIf="product.status == 'INDISPONÍVEL'" class="header-img" src="../../../assets/status_red.png" />
+    
+        <p class="header-title-txt">{{product.status}}</p>
+
+    </div>
+
+    <hr class="division-line" />
+
+    <div class="info-box">
+
+        <img class="product-img" src="https://i.imgur.com/YutHoJD.jpgD" />
+
+        <div class="product-desc-box">
+
+            <p class="product-name-txt hidden-txt">{{product.name}}</p>
+
+            <div class="desc-box">
+    
+                <p>{{product.type}}</p>
+                <p>&#8226;</p>
+                <p>{{product.country}}</p>
+                <p>&#8226;</p>
+                <p>{{getFirstGrape()}}</p>
+    
+            </div>
+
+        </div>
+
+        <p>Quantidade: {{product.quantity}}</p>
+
+        <p>Em promoção: <span [ngClass]="product.hasProm ? 'green-txt' : 'red-txt'" class="promotional-txt">{{ifHasProm()}}</span></p>
+        <p>Preço atual: <span class="price-txt">R${{product.currentPrice}}</span></p>
+
+    </div>
+
+</div>

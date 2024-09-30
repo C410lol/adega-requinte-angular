@@ -1,0 +1,40 @@
+.price-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.price-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.total-price-txt {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.btn-box {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #03a678;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #058b66;
+}
+
+.btn-txt {
+    color: white;
+    font-weight: 600;
+}

@@ -1,0 +1,280 @@
+.form-box {
+    width: 100%;
+
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+
+.img-boxes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.img-box {
+    width: 115px;
+    height: 150px;
+}
+
+.img-delete {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    cursor: pointer;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.wrap-input-boxes {
+    width: 100%;
+    max-width: 750px;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.wrap-input-box {
+    flex: 0 0 30%;
+    width: 100%;
+    min-width: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+.input-box {
+    width: 100%;
+    max-width: 750px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-title-txt {
+    font-size: 20px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 3.5px 10px rgba(0, 0, 0, 0.1);
+
+    outline: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+}
+
+.img-input {
+    width: 175px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+
+    cursor: pointer;
+}
+
+.img-input:hover {
+    background-color: rgb(228, 228, 228);
+}
+
+
+
+
+
+
+
+
+.grapes-input-box {
+    width: 100%;
+    height: 55px;
+
+    overflow-x: scroll;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 3.5px 10px rgba(0, 0, 0, 0.1);
+    
+    background-color: white;
+}
+
+.grape-box {
+    height: 90%;
+
+    padding: 5px 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5px;
+
+    border-radius: 5px;
+
+    background-color: #9e7d60ad;
+}
+
+.grape-box p {
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+.exclude-txt {
+    cursor: pointer;
+}
+
+.grape-btn-box {
+    width: 100px;
+    height: 90%;
+
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #03a678;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.grape-btn-box:hover {
+    background-color: #03a678;
+}
+
+.grape-btn-txt {
+    font-size: 15px;
+    color: #03a678;
+}
+
+.grape-btn-box:hover .grape-btn-txt {
+    color: white;
+}
+
+
+
+
+
+
+
+
+.price-input-box {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 3.5px 10px rgba(0, 0, 0, 0.1);
+    
+    background-color: white;
+}
+
+.reais-txt {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.non-box-shadow {
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+
+.btn-boxes {
+    width: 100%;
+    max-width: 750px;
+
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-box {
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #03a678;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #058b66;
+}
+
+.btn-txt {
+    color: white;
+    font-weight: 600;
+}
+
+.red-btn {
+    background-color: #c71515;
+}
+
+.red-btn:hover {
+    background-color: #a11212;
+}

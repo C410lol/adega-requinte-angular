@@ -1,0 +1,65 @@
+.dialog-box {
+    border-radius: 5px;
+
+    box-shadow: 0px 0px 10px 2.5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.content-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+
+.status-img {
+    width: 75px;
+    height: 75px;
+}
+
+
+
+
+.info-box {
+    padding-right: 10px;
+}
+
+.title-txt {
+    font-weight: 500;
+}
+
+.subtitle-txt {
+    font-size: 12.5px;
+}
+
+
+
+
+.btn-box {
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.img-btn {
+    width: 30px;
+    height: 30px;
+
+    padding: 2.5px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.img-btn:hover {
+    background-color: rgb(214, 214, 214);
+}

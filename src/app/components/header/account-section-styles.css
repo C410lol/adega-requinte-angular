@@ -1,0 +1,121 @@
+.account-box {
+    width: 300px;
+    
+    padding-top: 10px;
+
+    position: absolute;
+    right: 150px;
+    z-index: 2;
+}
+
+.mobile-account-box {
+    top: 50px;
+    right: 15px;
+}
+
+
+
+
+.account-content-box {
+    width: 100%;
+    height: 100%;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    border-radius: 5px;
+
+    background-color: white;
+}
+
+
+
+
+.account-section {
+    width: 100%;
+    height: 60px;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.account-section:hover {
+    background-color: #ececec;
+}
+
+.section-img {
+    width: 30px;
+    height: 30px;
+}
+
+.section-txt {
+    max-width: 100%;
+
+    white-space: nowrap;   
+    overflow: hidden;          
+    text-overflow: ellipsis; 
+}
+
+.section-txt:hover {
+    color: black;
+}
+
+
+
+
+.admin-box {
+    padding: 0;
+
+    border-radius: 0;
+}
+
+
+
+
+.separation-txt {
+    margin: 5px;
+
+    text-align: center;
+    font-weight: 500;
+}
+
+.separation-txt:hover {
+    color: black;
+}
+
+.division-line {
+    width: 100%;
+    height: 1px;
+    
+    border: 0;
+
+    background-color: #bebebe;
+}
+
+
+
+
+.mask-filter { 
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1;
+
+    background-color: rgba(0, 0, 0, 0.25);
+}

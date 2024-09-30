@@ -1,0 +1,25 @@
+<div [ngSwitch]="loadStatus" class="home-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
+
+        <p class="title-txt">Vinhos</p>
+
+        <div class="products-box">
+    
+            <app-product
+            *ngFor="let wine of wines"
+            [wine]="wine" 
+            />
+    
+        </div>
+
+    </div>
+
+    
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
+
+</div>

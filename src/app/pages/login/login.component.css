@@ -1,0 +1,108 @@
+.login-box {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.titles-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.title-txt {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.subtitle-txt {
+    text-align: center;
+    font-size: 15px;
+    color: #a5a5a5;
+}
+
+
+
+
+.form-box {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input {
+    width: 90%;
+    max-width: 400px;
+    height: 40px;
+
+    padding: 0 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+    outline: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+}
+
+
+
+
+.btn-box {
+    width: 90%;
+    max-width: 400px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #9E7D60;
+
+    cursor: pointer;
+}
+
+.btn-box:hover {
+    background-color: #8a6c53;
+}
+
+.btn-txt {
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+
+
+.info-txt, .create-txt {
+    font-size: 15px;
+    color: #919191;
+}
+
+.create-txt {
+    font-style: italic;
+    font-weight: 500;
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+.create-txt:hover {
+    color: #8a6c53;
+}
