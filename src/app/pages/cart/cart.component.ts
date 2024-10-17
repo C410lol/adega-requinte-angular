@@ -61,6 +61,7 @@ export class CartComponent implements OnInit {
 
 
   getCartProducts(): void {
+    this.isDiscountApplied = false;
     this.subTotalPrice = 0;
     this.totalPrice = 0;
 
