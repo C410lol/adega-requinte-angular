@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoadStatus } from '../../constants/LoadStatusEnum';
 
 @Component({
@@ -13,5 +13,19 @@ import { LoadStatus } from '../../constants/LoadStatusEnum';
 export class ErrorComponent {
 
   @Input() loadStatus: LoadStatus = LoadStatus.ERROR;
+
+
+
+
+  constructor(
+    private router: Router
+  ) { }
+
+
+
+
+  isNotHomePage(): boolean {
+    return this.router.url.slice(0, this.router.url.indexOf('?')) != '';
+  }
 
 }

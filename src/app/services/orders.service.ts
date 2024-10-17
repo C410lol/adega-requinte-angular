@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiUrls } from '../constants/ApiUrls';
+import { ApiUrls, AuthorizationHeader } from '../constants/API';
 import { OrderDTO } from '../dtos/OrderDTO';
 import { Observable } from 'rxjs';
 import { ResponseReturn } from '../types/ResponseReturn';
@@ -38,6 +38,7 @@ export class OrdersService {
       url,
       order,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );
@@ -47,10 +48,17 @@ export class OrdersService {
   // ------------------------------------------------------------------ //
 
 
-  getAll(): Observable<HttpResponse<ResponseReturn<PageType<OrderType>>>> {
+  getAll(
+    text?: string
+  ): Observable<HttpResponse<ResponseReturn<PageType<OrderType>>>> {
+    let url = `${this.ordersUrl}/all`;
+
+    if (text != null && text.trim().length > 0) url += `?text=${text}`;
+
     return this.httpClient.get<ResponseReturn<PageType<OrderType>>>(
-      `${this.ordersUrl}/all`,
+      url,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );
@@ -62,6 +70,7 @@ export class OrdersService {
     return this.httpClient.get<ResponseReturn<OrderType[]>>(
       `${this.ordersUrl}/all-by-user?userId=${userId}`,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );
@@ -73,6 +82,7 @@ export class OrdersService {
     return this.httpClient.get<ResponseReturn<OrderType>>(
       `${this.ordersUrl}/${orderId}`,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );
@@ -82,13 +92,27 @@ export class OrdersService {
   // ------------------------------------------------------------------ //
 
 
+  modifyStatus(
+    orderId: string,
+    status: string
+  ): Observable<HttpResponse<ResponseReturn<null>>> {
+    return this.httpClient.put<ResponseReturn<null>>(
+      `${this.ordersUrl}/${orderId}/modify-status?status=${status}`,
+      null,
+      {
+        headers: AuthorizationHeader(),
+        observe: 'response'
+      }
+    );
+  }
+
   cancelOrder(
     orderId: string
   ): Observable<HttpResponse<ResponseReturn<null>>> {
-    return this.httpClient.put<ResponseReturn<null>>(
-      `${this.ordersUrl}/${orderId}/cancel`,
-      null,
+    return this.httpClient.delete<ResponseReturn<null>>(
+      `${this.ordersUrl}/${orderId}`,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );

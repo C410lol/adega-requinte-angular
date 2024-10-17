@@ -6,7 +6,7 @@
             <img *ngIf="order.status == 'CANCELADO'" class="status-img" src="../../../assets/status_red.png"/>
             <img *ngIf="order.status == 'CONFIRMANDO'" class="status-img" src="../../../assets/status_yellow.png" />
             <img *ngIf="order.status == 'CONFIRMADO'" class="status-img" src="../../../assets/status_green.png" />
-            <img *ngIf="order.status == 'ENTREGUE'" class="status-img" src="../../../assets/status_normal.png" />
+            <img *ngIf="order.status == 'CONCLUÍDO'" class="status-img" src="../../../assets/status_normal.png" />
 
             <p class="status-txt">{{getFormatedEnum(order.status)}}</p>
         </div>

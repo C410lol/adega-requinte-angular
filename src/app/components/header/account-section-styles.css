@@ -4,8 +4,10 @@
     padding-top: 10px;
 
     position: absolute;
+
     right: 150px;
-    z-index: 2;
+
+    z-index: 1000;
 }
 
 .mobile-account-box {

@@ -3,11 +3,12 @@ import { CartWineType } from '../../types/CartWineType';
 import { HttpClientModule } from '@angular/common/http';
 import { WinesService } from '../../services/wines.service';
 import { LoadStatus } from '../../constants/LoadStatusEnum';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart-product',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [CommonModule, HttpClientModule],
   providers: [WinesService],
   templateUrl: './cart-product.component.html',
   styleUrl: './cart-product.component.css'
@@ -18,7 +19,12 @@ export class CartProductComponent implements OnInit {
 
   @Input() cartProduct = {} as CartWineType;
 
-  @Output() totalPriceChangeEvent: EventEmitter<number> = new EventEmitter<number>();
+  @Input() isUserMember: boolean = false;
+
+  memberPrice: number = 0;
+
+  @Output() setTotalPriceEvent: EventEmitter<{total: number, subtotal: number}> = new EventEmitter<{total: number, subtotal: number}>();
+  @Output() discountAppliedEvent: EventEmitter<void> = new EventEmitter<void>();
   @Output() deleteProductEvent: EventEmitter<void> = new EventEmitter<void>();
 
 
@@ -39,19 +45,28 @@ export class CartProductComponent implements OnInit {
           return;
         }
 
-        if (res.body.status == 'INDISPONÍVEL') {
+        if (res.body.status == 'INDISPONÍVEL' || res.body.quantity < 1) {
           this.deleteCartProduct();
           return;
         }
 
         this.cartProduct.wine = res.body;
-        this.cartProduct.totalPrice = this.cartProduct.quantity * res.body.currentPrice;
+
+        if (this.isUserMember && !this.cartProduct.wine.hasProm) {
+          this.discountAppliedEvent.emit();
+          this.memberPrice = (this.cartProduct.wine.currentPrice * 90) / 100;
+        } else this.memberPrice = this.cartProduct.wine.currentPrice;
+        
+        const totalPrice = this.memberPrice * this.cartProduct.quantity;
+        this.cartProduct.subtotalPrice = this.cartProduct.quantity * res.body.currentPrice;
+        this.setTotalPriceEvent.emit({total: totalPrice, subtotal: this.cartProduct.subtotalPrice});
+
         this.loadStatus = LoadStatus.LOADED;
 
         this.updateCartProduct(this.cartProduct);
 
       }
-    })
+    });
   }
 
 
@@ -92,21 +107,28 @@ export class CartProductComponent implements OnInit {
 
 
   changeQuantity(operation: string): void {
-    const lastTotalPrice = this.cartProduct.totalPrice;
+    const lastSubtotalPrice = this.cartProduct.subtotalPrice;
+    const lastTotalPrice = this.memberPrice * this.cartProduct.quantity;
     
     if (operation == 'plus' && this.cartProduct.quantity + 1 <= this.cartProduct.wine.quantity) this.cartProduct.quantity++;
     if (operation == 'minus' && this.cartProduct.quantity - 1 > 0) this.cartProduct.quantity--;
 
-    this.cartProduct.totalPrice = parseFloat((this.cartProduct.quantity * this.cartProduct.wine.currentPrice).toFixed(2)); 
+    const totalPrice = parseFloat((this.cartProduct.quantity * this.memberPrice).toFixed(2));
+    this.cartProduct.subtotalPrice = parseFloat((this.cartProduct.quantity * this.cartProduct.wine.currentPrice).toFixed(2)); 
     this.updateCartProduct(this.cartProduct);
-    this.totalPriceChangeEvent.emit(this.cartProduct.totalPrice - lastTotalPrice);
+    this.setTotalPriceEvent.emit({total: totalPrice - lastTotalPrice, subtotal: this.cartProduct.subtotalPrice - lastSubtotalPrice});
   }
 
 
 
 
+  getFirstImage(): string {
+    if (this.cartProduct.wine.images == null || this.cartProduct.wine.images.length < 1) return '../../assets/wine_img.png';
+    return this.cartProduct.wine.images[0];
+  }
+
   getRoudendPrice(): number {
-    return parseFloat(this.cartProduct.totalPrice.toFixed(2));
+    return parseFloat(this.cartProduct.subtotalPrice.toFixed(2));
   }
 
 }

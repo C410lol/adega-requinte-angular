@@ -1,12 +1,16 @@
 <div [ngSwitch]="loadStatus" class="admin-products-box page">
 
-    <div *ngSwitchCase="1" class="content-box">
+    <p class="page-title-txt">Gerenciar Produtos</p>
 
-        <p class="page-title-txt">Gerenciar Produtos</p>
-        
-        <div (click)="goToCreateProductPage()" class="btn-box">
-            <p class="btn-txt">Criar Produto</p>
-        </div>
+    <div *ngIf="loadStatus != 3" (click)="goToCreateProductPage()" class="btn-box">
+        <p class="btn-txt">Criar Produto</p>
+    </div>
+
+
+    <input *ngIf="loadStatus != 3" (input)="textInputEvent()" [(ngModel)]="text" class="input" placeholder="Procurar produto..." /> 
+
+
+    <div *ngSwitchCase="1" class="content-box">
 
         <div class="products-box no-margin-top">
 
@@ -24,6 +28,6 @@
 
     <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
     <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
-    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

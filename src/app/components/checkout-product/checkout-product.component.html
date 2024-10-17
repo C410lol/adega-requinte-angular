@@ -1,15 +1,15 @@
 <div class="order-product-box">
 
-    <img class="product-img" src="https://i.imgur.com/YutHoJD.jpg" />
+    <img class="product-img" [src]="getFirstImage()" />
 
     <div class="product-info">
         <p class="product-name">{{cartProduct.wine.name}}</p>
         <div class="product-subinfo-box">
             <p>{{cartProduct.wine.type}}</p>
-            <p>&#8226;</p>
-            <p>{{cartProduct.wine.classification}}</p>
-            <p>&#8226;</p>
-            <p>{{cartProduct.wine.country}}</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">{{cartProduct.wine.category}}</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'" class="hidden-txt">{{cartProduct.wine.classification}}</p>
         </div>
     </div>
 

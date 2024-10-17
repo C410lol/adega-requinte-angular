@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { DialogStatus } from '../constants/DialogStatusEnum';
 import { Overlay } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs';
 import { ActionDialogComponent } from '../components/action-dialog/action-dialog.component';
+import { LoadDialogComponent } from '../components/load-dialog/load-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,20 +22,26 @@ export class DialogService {
 
   getDialogOptions(
     type: string,
-    data: {status?: DialogStatus, title?: string, message?: string}
+    data?: {status?: DialogStatus, title?: string, message?: string}
   ): MatDialogConfig {
+    const minWidth = type == 'loading' ? undefined : '300px';
     const backdrop = type == 'status' ? 'dialog-status-backdrop' : 'dialog-action-backdrop';
+    const panelClass = type == 'loading' ? 'loading-dialog' : 'dialog';
     const scroll = type == 'status' ? this.overlay.scrollStrategies.noop() : undefined;
+    const position = type == 'loading' ? undefined : { left: '50%', bottom: '25px' };
+    const diableClose = type == 'loading' ? true : false;
 
     return {
         maxWidth: '400px',
-        minWidth: '300px',
+        minWidth: minWidth,
 
         backdropClass: backdrop,
-        panelClass: 'dialog',
+        panelClass: panelClass,
         scrollStrategy: scroll,
     
-        position: { left: '50%', bottom: '25px' },
+        position: position,
+
+        disableClose: diableClose,
 
         data: data
     }
@@ -72,6 +79,13 @@ export class DialogService {
       'action',
       { title: title }
     )).afterClosed();
+  }
+
+
+
+
+  openLoadingDialog(): MatDialogRef<any> {
+    return this.matDialog.open(LoadDialogComponent, this.getDialogOptions('loading'));
   }
 
 }

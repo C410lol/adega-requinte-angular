@@ -1,6 +1,6 @@
 <div class="cart-product-box">
     
-    <img class="product-img" src="https://i.imgur.com/YutHoJD.jpg"/>
+    <img class="product-img" [src]="getFirstImage()"/>
 
     <div class="info-box">
 
@@ -12,11 +12,11 @@
 
                 <div class="desc-box">
 
-                    <p class="montserrat-font">{{cartProduct.wine.type}}</p>
-                    <p>&#8226;</p>
-                    <p class="montserrat-font">{{cartProduct.wine.classification}}</p>
-                    <p>&#8226;</p>
-                    <p class="montserrat-font">{{cartProduct.wine.country}}</p>
+                    <p>{{cartProduct.wine.type}}</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">{{cartProduct.wine.category}}</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="cartProduct.wine.type == 'Vinho'" class="hidden-txt">{{cartProduct.wine.classification}}</p>
 
                 </div>
 

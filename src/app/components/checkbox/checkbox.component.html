@@ -1,0 +1,9 @@
+<div class="checkbox-box">
+
+    <div (click)="checkEmmit()" [ngClass]="checked ? 'checked' : ''" class="check-box">
+        <img *ngIf="checked" class="check-img" src="../../../assets/check.png" />
+    </div>
+
+    <p class="check-txt">{{placeholder}}</p>
+
+</div>

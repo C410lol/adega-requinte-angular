@@ -1,0 +1,90 @@
+.btn-box {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.btn-txt {
+    color: white;
+    font-weight: 600;
+}
+
+.green-btn {
+    background-color: #03a678;
+}
+
+.green-btn:hover {
+    background-color: #058b66;
+}
+
+.red-btn {
+    background-color: #c71515;
+}
+
+.red-btn:hover {
+    background-color: #a11212;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.btn-leaked-box {
+    width: 50%;
+    max-width: 150px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.btn-leaked-txt {
+    font-size: 15px;
+}
+
+.btn-leaked-box:hover .btn-leaked-txt {
+    color: white;
+}
+
+.leaked-green-box {
+    border: 1px solid #03a678;
+}
+
+.leaked-green-box:hover {
+    background-color: #03a678;
+}
+
+.leaked-green-txt {
+    color: #03a678;
+}
+
+.leaked-red-box {
+    border: 1px solid #e71717;
+}
+
+.leaked-red-box:hover {
+    background-color: #e71717;
+}
+
+.leaked-red-txt {
+    color: #e71717;
+}

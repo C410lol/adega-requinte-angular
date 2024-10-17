@@ -4,5 +4,6 @@ export type UserType = {
     email: string,
     phone: string,
     password: string,
+    member: boolean,
     role: string 
 }

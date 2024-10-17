@@ -8,11 +8,18 @@ import { CommonModule } from '@angular/common';
 import { OrderProductComponent } from '../../components/order-product/order-product.component';
 import { BackComponent } from "../../components/back/back.component";
 import { DialogService } from '../../services/dialog.service';
+import { ErrorComponent } from '../../components/error/error.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, OrderProductComponent, BackComponent],
+  imports: [
+    CommonModule, 
+    HttpClientModule, 
+    OrderProductComponent, 
+    BackComponent,
+    ErrorComponent
+  ],
   providers: [OrdersService],
   templateUrl: './order.component.html',
   styleUrls: [
@@ -34,7 +41,7 @@ export class OrderComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private ordersService: OrdersService,
-    private dialogsService: DialogService
+    private dialogService: DialogService
   ) { }
 
 
@@ -90,26 +97,33 @@ export class OrderComponent implements OnInit {
   }
 
   cancelOrder(): void {
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.ordersService.cancelOrder(this.orderId).subscribe({
       next: () => {
+        
+        loadingDialog.close();
 
-        this.dialogsService.openDialogSuccess('Pedido cancelado com sucesso!');
+        this.dialogService.openDialogSuccess('Pedido cancelado com sucesso!');
         this.router.navigate(['/orders']);
 
       },
       error: (err) => {
 
+        loadingDialog.close();
+
         console.error(err);
+        this.dialogService.openDialogSuccess(err.error.message);
 
       }
-    })
+    });
   }
 
 
 
 
   cancelActionDialog(): void {
-    this.dialogsService.openActionDialog('Cancelar pedido?').subscribe({
+    this.dialogService.openActionDialog('Cancelar pedido?').subscribe({
       next: (res) => {
 
         if (res == 'confirm') this.cancelOrder();

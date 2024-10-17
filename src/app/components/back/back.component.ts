@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -11,18 +11,30 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class BackComponent {
 
+  @Input() url?: string;
+
+
+
+
   constructor(
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
 
 
 
   goBack(): void {
+    if (this.url != null) {
+      this.router.navigate([this.url]);
+      return;
+    }
+
     if (window.history.length < 2) {
       this.location.go('/');
       return;
     }
+    
     this.location.back();
   }
 

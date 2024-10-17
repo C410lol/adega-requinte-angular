@@ -72,10 +72,14 @@ export class CreateComponent implements OnInit {
       return;
     }
 
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.usersService.createUser(
       { name: this.name, email: this.email, phone: this.phone, password: this.password }
     ).subscribe({
       next: (res) => {
+
+        loadingDialog.close();
 
         if (res.body == null) return;
 
@@ -89,6 +93,8 @@ export class CreateComponent implements OnInit {
 
       },
       error: (err) => {
+
+        loadingDialog.close();
 
         console.error(err);
         this.dialogService.openDialogError(`${err.error.message}`);

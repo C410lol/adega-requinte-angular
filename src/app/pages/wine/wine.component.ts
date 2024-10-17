@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartWineType } from '../../types/CartWineType';
 import { CommonModule } from '@angular/common';
 import { DialogService } from '../../services/dialog.service';
+import { BackComponent } from "../../components/back/back.component";
+import { ErrorComponent } from "../../components/error/error.component";
 
 @Component({
   selector: 'app-wine',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, BackComponent, ErrorComponent],
   providers: [WinesService],
   templateUrl: './wine.component.html',
   styleUrls: [
@@ -24,6 +26,11 @@ export class WineComponent implements OnInit {
 
   wineId: string = '';
   wine = {} as WineType;
+
+  seletedImage: string = '';
+  selectedImageIndex: number = 0;
+
+  grapes: string = 'Nenhuma';
 
   quantity: number = 1;
   
@@ -60,6 +67,10 @@ export class WineComponent implements OnInit {
         }
 
         this.wine = res.body;
+
+        if (res.body.images != null) this.seletedImage = res.body.images[0];
+        this.getGrapes();
+
         this.loadStatus = LoadStatus.LOADED;
 
       },
@@ -91,7 +102,7 @@ export class WineComponent implements OnInit {
     cartProducts.push({ 
       wine: this.wine, 
       quantity: this.quantity, 
-      totalPrice: totalPrice
+      subtotalPrice: totalPrice
     });
 
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
@@ -112,7 +123,7 @@ export class WineComponent implements OnInit {
     const newTotalPrice = newQuantity * this.wine.currentPrice;
 
     cartProducts[cartProductIndex] = { 
-      wine: this.wine, quantity: newQuantity, totalPrice: newTotalPrice 
+      wine: this.wine, quantity: newQuantity, subtotalPrice: newTotalPrice 
     };
     localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
 
@@ -124,9 +135,27 @@ export class WineComponent implements OnInit {
 
 
 
-  getGrapes(): string {
-    if (this.wine.grapes.length < 1) return 'Nenhuma';
-    return this.wine.grapes.map((e) => e.name).join('; ');
+  increaseImageIndex(): void {
+    if (this.wine.images == null) return;
+
+    if (!(this.selectedImageIndex + 1 <= this.wine.images.length - 1)) return;
+    this.seletedImage = this.wine.images[this.selectedImageIndex + 1];
+    this.selectedImageIndex++;
+  }
+
+  decreaseImageIndex(): void {
+    if (this.wine.images == null) return;
+
+    if (!(this.selectedImageIndex - 1 >= 0)) return;
+    this.seletedImage = this.wine.images[this.selectedImageIndex - 1];
+    this.selectedImageIndex--;
+  }
+
+  getGrapes(): void {
+    if (this.wine.grapes == null) return;
+
+    if (this.wine.grapes.length < 1) return;
+    this.grapes = this.wine.grapes.map((e) => e.name).join(', ');
   }
 
 
@@ -135,6 +164,22 @@ export class WineComponent implements OnInit {
   changeQuantity(operation: string): void {
     if (operation == 'plus' && this.quantity + 1 <= this.wine.quantity) this.quantity++;
     if (operation == 'minus' && this.quantity - 1 > 0) this.quantity--;
+  }
+
+
+
+
+  getMemberDiscountPrice(): number {
+    return parseFloat(((this.wine.regPrice * 90) / 100).toFixed(2));
+  }
+
+
+
+
+  ifProductsHasMoreThanOneImage(): boolean {
+    if (this.wine.images == null) return false;
+    if (this.wine.images.length < 2) return false;
+    return true;
   }
 
 }

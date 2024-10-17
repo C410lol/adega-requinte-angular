@@ -7,7 +7,55 @@
 
     <div *ngSwitchCase="1" class="content-box">
 
-        <p class="title-txt">Pedido #{{order.orderNumber}}</p>
+        <div class="header-box">
+
+            <p class="title-txt">Pedido #{{order.orderNumber}}</p>
+
+            <div *ngIf="order.status != 'CONFIRMANDO'" class="config-btns-box">
+
+                <div *ngIf="order.status != 'CANCELADO' && order.status != 'CONCLUÍDO'" class="input-box">
+                    <p class="input-title-txt">Status: </p>
+                    <select [(ngModel)]="selectedStatus" class="input">
+                        <option>CONFIRMADO</option>
+                        <option>CONCLUÍDO</option>
+                    </select>
+                </div>
+
+                <div *ngIf="order.status != 'CANCELADO' && order.status != 'CONCLUÍDO'" (click)="cancelActionDialog()" class="btn-leaked-box leaked-red-box">
+                    <p class="btn-leaked-txt leaked-red-txt">Cancelar Pedido</p>
+                </div>
+
+                <div *ngIf="order.status == 'CANCELADO'" (click)="restoreActionDialog()" class="btn-leaked-box leaked-green-box">
+                    <p class="btn-leaked-txt leaked-green-txt">Recuperar Pedido</p>
+                </div>
+
+                <div *ngIf="isLastStatusDifferent()" (click)="editOrderStatus(selectedStatus)" class="btn-leaked-box leaked-green-box">
+                    <p class="btn-leaked-txt leaked-green-txt">Salvar</p>
+                </div>
+
+            </div>
+
+            <div *ngIf="order.status == 'CONFIRMANDO'" class="config-btns-box">
+
+                <div (click)="editOrderStatus('CONFIRMADO')" class="btn-leaked-box leaked-green-box">
+                    <p class="btn-leaked-txt leaked-green-txt">Aceitar Pedido</p>
+                </div>
+
+                <div (click)="editOrderStatus('CANCELADO')" class="btn-leaked-box leaked-red-box">
+                    <p class="btn-leaked-txt leaked-red-txt">Recusar Pedido</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <hr class="division-line" />
+
+
+
 
         <div class="info-box">
 
@@ -96,6 +144,28 @@
     
                     </div>
 
+
+
+
+                    <div class="user-box">
+
+                        <p class="products-title-txt">Cliente</p>
+                        <div class="subinfo-boxes">
+
+                            <div class="subinfo-box">
+                                <p class="subinfo-txt">{{order.user.name}}</p>
+                            </div>
+                            <div class="subinfo-box">
+                                <p class="subinfo-txt">{{order.user.email}}</p>
+                            </div>
+                            <div class="subinfo-box">
+                                <p class="subinfo-txt">{{order.user.phone}}</p>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
                 </div>
         
             </div>
@@ -147,12 +217,6 @@
                         <p class="total-txt montserrat-font">R${{order.totalPrice}}</p>
         
                     </div>
-
-                    <div *ngIf="order.status != 'CANCELADO' && order.status != 'ENTREGUE'" class="btn-box">
-
-                        <p class="btn-txt montserrat-font">Cancelar Compra</p>
-    
-                    </div>
     
                 </div>
         
@@ -161,5 +225,12 @@
         </div>
 
     </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

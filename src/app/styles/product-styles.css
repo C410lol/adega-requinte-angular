@@ -1,18 +1,13 @@
 .products-box {
     width: 100%;
+    max-width: 1500px;
 
     margin-top: 50px;
 
     display: grid;
     justify-items: center;
     grid-template-columns: auto auto auto auto;
-    row-gap: 20px;
-    column-gap: 20px;
-}
-
-.products-box * {
-    width: 90%;
-    max-width: 325px;
+    row-gap: 15px;
 }
 
 
@@ -22,7 +17,7 @@
 
 
 
-@media screen and (width <= 1550px) {
+@media screen and (width <= 1250px) {
 
     .products-box {
         grid-template-columns: auto auto auto;
@@ -30,7 +25,7 @@
 
 }
 
-@media screen and (width <= 1150px){
+@media screen and (width <= 950px){
     
     .products-box {
         grid-template-columns: auto auto;
@@ -38,7 +33,7 @@
 
 }
 
-@media screen and (width <= 768px){
+@media screen and (width <= 650px){
     
     .products-box {
         grid-template-columns: auto;

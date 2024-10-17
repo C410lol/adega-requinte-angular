@@ -1,6 +1,6 @@
 .admin-product-box {
-    width: 325px;
-    height: 350px;
+    width: 300px;
+    min-height: 450px;
 
     padding: 10px;
 
@@ -57,12 +57,13 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
 .product-img {
-    width: 100px;
+    width: 150px;
 }
 
 
@@ -71,13 +72,15 @@
 
 
 .product-desc-box {
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .product-name-txt {
-    max-width: 300px;
+    max-width: 100%;
     font-weight: 500;
 }
 
@@ -90,6 +93,7 @@
 
 .desc-box p {
     font-size: 12.5px;
+    color: #aaaaaa;
 }
 
 

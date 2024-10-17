@@ -5,29 +5,60 @@ class="product-box"
 
    <div class="img-box">
 
-    <img class="wine-img" src="https://i.imgur.com/YutHoJD.jpgD"/>
+    <img class="wine-img" [src]="getFirstImage()"/>
 
    </div>
+
+
+
 
    <div class="info-box">
 
-    <div *ngIf="wine.hasProm && wine.status == 'DISPONÍVEL'" class="prom-box">
+    <div *ngIf="wine.status == 'DISPONÍVEL'" class="info-section-box">
 
-        <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+        <p [ngClass]="wine.hasProm ? 'line-txt' : 'price-txt'" class="price-txt">R${{wine.regPrice}}</p>
+
+        <div *ngIf="wine.hasProm" class="prom-box">
+    
+            <p class="prom-price-txt price-txt">R${{wine.promPrice}}</p>
+            <div class="prom-percentage-box">
+                <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+            </div>
+    
+        </div>
 
     </div>
 
-    <p class="name-txt ">{{wine.name}}</p>
+    <div class="info-section-box">
 
-    <div class="desc-box">
-        <p class="">{{wine.type}}</p>
-        <p>&#8226;</p>
-        <p class="">{{wine.type}}</p>
-        <p>&#8226;</p>
-        <p class="hidden-txt ">{{getFirtsGrape()}}</p>
+        <p class="name-txt ">{{wine.name}}</p>
+    
+        <div class="desc-box">
+            <p>{{wine.type}}</p>
+            <p *ngIf="wine.type == 'Vinho'">&#8226;</p>
+            <p *ngIf="wine.type == 'Vinho'">{{wine.category}}</p>
+            <p *ngIf="wine.type == 'Vinho'">&#8226;</p>
+            <p *ngIf="wine.type == 'Vinho'" class="hidden-txt">{{wine.classification}}</p>
+        </div>
+
+    </div>
+
+    <div *ngIf="wine.status == 'DISPONÍVEL' && !wine.hasProm" class="info-section-box">
+
+        <div class="prom-box">
+    
+            <img class="discount-img" src="../../../assets/discount.png" />
+            <p class="discount-txt">10% no consórcio</p>
+    
+        </div>
+
     </div>
 
    </div>
+
+
+
+
 
    <div
    [ngSwitch]="wine.status"
@@ -35,9 +66,6 @@ class="product-box"
    class="btn-box">
 
     <div *ngSwitchCase="'DISPONÍVEL'">
-        <p [ngClass]="wine.hasProm ? 'line-txt' : 'price-txt'" class="price-txt">R${{wine.regPrice}}</p>
-        <p *ngIf="wine.hasProm" class="prom-price-txt price-txt">R${{wine.promPrice}}</p>
-
         <p class="buy-txt">Comprar</p>
     </div>
     

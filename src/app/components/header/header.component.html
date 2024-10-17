@@ -5,9 +5,9 @@
     </div>
 
     <div class="search-box">
-        <img class="search-img" src="../../../assets/search.png"/>
+        <img (click)="submitWineSearch()" class="search-img" src="../../../assets/search.png"/>
 
-        <input class="search-input" placeholder="Procurar vinho"/>
+        <input [(ngModel)]="nameFilter" (keydown.enter)="enterKeyClick($event)" class="search-input" placeholder="Procurar vinho"/>
     </div>
 
     <div class="user-box normal-user-box">
@@ -147,7 +147,7 @@
 
                     <p class="separation-txt">Admin</p>
 
-                    <div class="account-section">
+                    <div (click)="clickUserItem('admin-products')" class="account-section">
             
                         <img class="section-img" src="../../../assets/products.png"/>
                         <p class="section-txt">Produtos</p>

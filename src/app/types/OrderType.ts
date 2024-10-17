@@ -10,6 +10,7 @@ export type OrderType = {
     address?: AddressType,
     payment: string,
     exchange?: number,
+    hasMemberDiscount: boolean,
     totalPrice: number,
     totalProducts: number,
     status: string,

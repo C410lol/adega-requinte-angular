@@ -1,4 +1,4 @@
-<app-back />
+<app-back [url]="'admin-products'" />
 
 
 
@@ -19,7 +19,7 @@
 
                 <div class="img-boxes">
                     <div
-                    *ngFor="let image of selectedImages"
+                    *ngFor="let image of getImagesList()"
                     class="img-box">
                         <img (click)="deleteSelectedImage(image)" class="img-delete" src="../../../assets/trash.png" />
                         <img
@@ -43,12 +43,35 @@
                 <p class="input-title-txt">Descrição:</p>
                 <input [(ngModel)]="description" class="input" placeholder="Descrição..." />
             </div>
-            
+
             <div class="wrap-input-boxes">
 
                 <div class="input-box wrap-input-box">
-                    <p class="input-title-txt">Categoria:</p>
+                    <p class="input-title-txt">Tipo:</p>
                     <select [(ngModel)]="type" class="input">
+                        <option>Vinho</option>
+                        <option>Suco</option>
+                        <option>Acessório</option>
+                    </select>
+                </div>
+
+                <div class="input-box wrap-input-box">
+                    <p class="input-title-txt">Estoque:</p>
+                    <input [(ngModel)]="quantity" class="input" type="number" />
+                </div>
+
+                <div *ngIf="type == 'Vinho' || type == 'Suco'" class="input-box wrap-input-box">
+                    <p class="input-title-txt">Tamanho:</p>
+                    <input [(ngModel)]="size" class="input" placeholder="1L, 750ml..." />
+                </div>
+
+            </div>
+            
+            <div *ngIf="type == 'Vinho' || type == 'Suco'" class="wrap-input-boxes">
+
+                <div *ngIf="type == 'Vinho'" class="input-box wrap-input-box">
+                    <p class="input-title-txt">Categoria:</p>
+                    <select [(ngModel)]="category" class="input">
                         <option>Tinto</option>
                         <option>Branco</option>
                         <option>Rosé</option>
@@ -69,7 +92,7 @@
                     </select>
                 </div>
 
-                <div class="input-box wrap-input-box">
+                <div *ngIf="type == 'Vinho'" class="input-box wrap-input-box">
                     <p class="input-title-txt">Classificação:</p>
                     <select [(ngModel)]="classification" class="input">
                         <option>Nature</option>
@@ -84,21 +107,7 @@
 
             </div>
 
-            <div class="wrap-input-boxes">
-
-                <div class="input-box wrap-input-box">
-                    <p class="input-title-txt">Tamanho:</p>
-                    <input [(ngModel)]="size" class="input" placeholder="1L, 750ml..." />
-                </div>
-
-                <div class="input-box wrap-input-box">
-                    <p class="input-title-txt">Estoque:</p>
-                    <input [(ngModel)]="quantity" class="input" type="number" />
-                </div>
-
-            </div>
-
-            <div class="input-box">
+            <div *ngIf="type == 'Vinho' || type == 'Suco'" class="input-box">
                 <p class="input-title-txt">Uvas:</p>
                 <div class="grapes-input-box">
                     <div

@@ -1,12 +1,12 @@
 .product-box {
-    width: 335px;
-    height: 500px;
+    width: 300px;
 
     display: flex;
     flex-direction: column;
+    gap: 20px;
 
     border: 1px solid #dadada;
-    border-radius: 5px;
+    border-radius: 2.5px;
 
     background-color: #ffffff;
 
@@ -21,7 +21,8 @@
 
 
 .img-box {
-    height: 60%;
+    height: 70%;
+    max-height: 70%;
 
     padding-top: 10px;
 
@@ -31,8 +32,7 @@
 }
 
 .wine-img {
-    width: 60%;
-    height: 100%;
+    width: 50%;
 }
 
 
@@ -48,11 +48,17 @@
 
     padding-top: 10px;
 
-    margin-top: auto;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-section-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -67,10 +73,15 @@
 }
 
 .prom-box {
-    width: 100px;
-    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7.5px;
+}
 
-    margin: 5px 0;
+.prom-percentage-box {
+    width: 80px;
+    height: 17.5px;
     
     padding: 12.5px 0;
 
@@ -78,13 +89,15 @@
     justify-content: center;
     align-items: center;
 
-    border-radius: 5px;
+    border-radius: 2.5px;
 
     background-color: #c71515;
 }
 
 .prom-percentage-txt {
     color: white;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .desc-box {
@@ -101,7 +114,25 @@
 
 .desc-box p {
     font-size: 12.5px;
-    color: #bdbdbd;
+    color: #aaaaaa;
+}
+
+
+
+
+
+
+
+
+.discount-img {
+    width: 25px;
+    height: 25px;
+}
+
+.discount-txt {
+    font-size: 15px;
+    font-weight: 500;
+    color: #06b400;
 }
 
 
@@ -113,7 +144,7 @@
 
 .btn-box {
     width: 100%;
-    height: 17.5%;
+    height: 50px;
 
     margin-top: auto;
 
@@ -121,8 +152,8 @@
     align-items: center;
     justify-content: center;
 
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 2.5px;
+    border-bottom-right-radius: 2.5px;
 
     background-color: #03a678;
 }
@@ -134,18 +165,21 @@
 .btn-box p {
     text-align: center;
     color: white;
+    font-size: 17.5px;
+    font-weight: 400;
 }
 
 .price-txt {
-    font-size: 13.5px;
+    font-size: 20px;
     font-weight: 500;
 }
 
 .prom-price-txt {
-    font-size: 16.5px;
+    font-size: 20px;
 }
 
 .line-txt {
+    font-size: 16.5px;
     text-decoration: line-through;
 }
 
@@ -166,8 +200,4 @@
 
 .unavailable:hover {
     background-color: rgb(150, 150, 150);
-}
-
-.unavailable p {
-    font-weight: 500;
 }

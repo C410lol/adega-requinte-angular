@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiUrls } from '../constants/ApiUrls';
+import { ApiUrls, AuthorizationHeader } from '../constants/API';
 import { Observable } from 'rxjs';
 import { ResponseReturn } from '../types/ResponseReturn';
 import { AddressType } from '../types/AddressType';
@@ -29,6 +29,7 @@ export class AddressesService {
     return this.httpClient.get<ResponseReturn<AddressType[]>>(
       `${this.addressesUrl}/all?userId=${userId}`,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );

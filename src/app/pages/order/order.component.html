@@ -140,6 +140,13 @@
                         <p class="montserrat-font">R${{order.exchange}}</p>
         
                     </div>
+
+                    <div *ngIf="order.hasMemberDiscount" class="price-box">
+    
+                        <p class="montserrat-font green-txt">Consórcio</p>
+                        <p class="montserrat-font green-txt">10% OFF</p>
+        
+                    </div>
         
                     <div class="price-box">
         
@@ -148,7 +155,7 @@
         
                     </div>
 
-                    <div *ngIf="order.status != 'CANCELADO' && order.status != 'ENTREGUE'" (click)="cancelActionDialog()" class="btn-box">
+                    <div *ngIf="order.status != 'CANCELADO' && order.status != 'CONCLUÍDO'" (click)="cancelActionDialog()" class="btn-box">
 
                         <p class="btn-txt montserrat-font">Cancelar Compra</p>
     
@@ -161,5 +168,12 @@
         </div>
 
     </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

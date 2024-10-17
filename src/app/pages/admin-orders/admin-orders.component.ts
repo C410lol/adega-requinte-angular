@@ -5,21 +5,33 @@ import { OrdersService } from '../../services/orders.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AdminOrderComponent } from "../../components/admin-order/admin-order.component";
+import { ErrorComponent } from "../../components/error/error.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-orders',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, AdminOrderComponent],
+  imports: [
+    CommonModule, 
+    FormsModule,
+    HttpClientModule,
+    AdminOrderComponent, 
+    ErrorComponent,
+  ],
   providers: [OrdersService],
   templateUrl: './admin-orders.component.html',
   styleUrls: [
     '../../styles/product-styles.css',
+    '../../styles/input-styles.css',
     './admin-orders.component.css'
   ]
 })
 export class AdminOrdersComponent implements OnInit {
 
   loadStatus: LoadStatus = LoadStatus.LOADING;
+
+  text: string = '';
+  timer: any;
 
   orders: OrderType[] = [];
 
@@ -41,7 +53,7 @@ export class AdminOrdersComponent implements OnInit {
 
 
   getOrders(): void {
-    this.ordersService.getAll().subscribe({
+    this.ordersService.getAll(this.text).subscribe({
       next: (res) => {
 
         if (!res.ok || res.body == null) {
@@ -65,6 +77,14 @@ export class AdminOrdersComponent implements OnInit {
 
       }
     })
+  }
+
+
+
+
+  textInputEvent(): void {
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.getOrders(), 500);
   }
 
 }

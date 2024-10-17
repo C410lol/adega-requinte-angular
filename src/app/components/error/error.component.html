@@ -12,7 +12,7 @@
         <p class="error-title-txt">Não há nada por aqui!</p>
         <p class="error-desc-txt">Não achamos nenhum conteúdo por aqui, está tudo vazio</p>
     
-        <div [routerLink]="['/']" class="back-box">
+        <div *ngIf="isNotHomePage()" [routerLink]="['/']" class="back-box">
             <img class="back-img" src="../../../assets/back.png"/>
             <p class="back-txt">Voltar à pagina inicial</p>
         </div>
@@ -24,7 +24,7 @@
         <p class="error-title-txt">Erro ao carregar seu conteúdo!</p>
         <p class="error-desc-txt">Algo inesperado ocorreu, tente novamente mais tarde</p>
     
-        <div [routerLink]="['/']" class="back-box">
+        <div *ngIf="isNotHomePage()" [routerLink]="['/']" class="back-box">
             <img class="back-img" src="../../../assets/back.png"/>
             <p class="back-txt">Voltar à pagina inicial</p>
         </div>

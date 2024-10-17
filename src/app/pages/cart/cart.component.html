@@ -10,9 +10,11 @@
 
                 <app-cart-product 
                 *ngFor="let product of cartProducts"
+                [isUserMember]="isUserMember"
                 [cartProduct]="product"
-                (totalPriceChangeEvent)="updateTotalPrice($event)"
-                (deleteProductEvent)="getCartProducts()"
+                (setTotalPriceEvent)="setTotalPrice($event)"
+                (discountAppliedEvent)="isDiscountApplied = true"
+                (deleteProductEvent)="isDiscountApplied = false; getCartProducts()"
                 />
 
             </div>
@@ -22,13 +24,21 @@
         <div class="payment-box">
     
             <p class="payment-title-txt montserrat-font">Resumo da Compra</p>
+            <p class="warning-txt">*O desconto do consórcio não é aplicado em produtos em promoção</p>
             
             <div class="price-boxes">
 
                 <div class="price-box">
 
                     <p class="montserrat-font">Subtotal</p>
-                    <p class="montserrat-font">R${{getTotalPriceRounded()}}</p>
+                    <p class="montserrat-font">R${{getSubtotalPriceRounded()}}</p>
+    
+                </div>
+
+                <div *ngIf="isDiscountApplied" class="price-box">
+
+                    <p class="montserrat-font green-txt">Consórcio</p>
+                    <p class="montserrat-font green-txt">10% OFF</p>
     
                 </div>
     

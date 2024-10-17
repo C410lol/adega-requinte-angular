@@ -1,18 +1,12 @@
 .info-box {
     width: 100%;
 
-    margin-top: 50px;
+    margin-top: 40px;
 
     display: flex;
     flex-flow: wrap;
     justify-content: center;
     gap: 10%;
-}
-
-.title-txt {
-    font-size: 30px;
-    font-weight: 500;
-    text-align: center;
 }
 
 
@@ -174,32 +168,5 @@
 }
 
 .total-txt {
-    font-weight: 600;
-}
-
-
-
-
-.btn-box {
-    width: 100%;
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 5px;
-
-    background-color: #c71515;
-
-    cursor: pointer;
-}
-
-.btn-box:hover {
-    background-color: #a11212;
-}
-
-.btn-txt {
-    color: white;
     font-weight: 600;
 }

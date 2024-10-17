@@ -1,8 +1,25 @@
 <div [ngSwitch]="loadStatus" class="home-box page">
 
-    <div *ngSwitchCase="1" class="content-box">
+    <p class="title-txt">Vinhos</p>
 
-        <p class="title-txt">Vinhos</p>
+    
+
+
+    <div class="filters-box">
+        <div *ngIf="ifQueryParamsExists()" (click)="clearQueryParams()" class="clear-filter-box btn-leaked-box leaked-red-box">
+            <p class="btn-leaked-txt leaked-red-txt">Limpar filtros</p>
+        </div>
+
+        <div (click)="openFilter()" class="products-filter-box">
+            <img class="filter-img" src="../../../assets/filter.png" />
+            <p class="filter-txt">Filtros</p>
+        </div>
+    </div>
+
+    
+
+
+    <div *ngSwitchCase="1" class="content-box">
 
         <div class="products-box">
     

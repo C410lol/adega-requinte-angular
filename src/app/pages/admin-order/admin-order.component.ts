@@ -8,14 +8,29 @@ import { DialogService } from '../../services/dialog.service';
 import { OrdersService } from '../../services/orders.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ErrorComponent } from '../../components/error/error.component';
 
 @Component({
   selector: 'app-admin-order',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, OrderProductComponent, BackComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    HttpClientModule, 
+    OrderProductComponent, 
+    BackComponent,
+    ErrorComponent
+  ],
   providers: [OrdersService],
   templateUrl: './admin-order.component.html',
-  styleUrl: './admin-order.component.css'
+  styleUrls: [
+    '../../styles/btn-styles.css',
+    '../../styles/input-styles.css',
+    './header-styles.css',
+    './admin-order.component.css',
+    './mobile-styles.css'
+  ]
 })
 export class AdminOrderComponent implements OnInit {
 
@@ -23,6 +38,9 @@ export class AdminOrderComponent implements OnInit {
 
   orderId: string = '';
   order = {} as OrderType;
+
+  selectedStatus: string = '';
+  lastStatus: string = '';
 
 
 
@@ -73,6 +91,9 @@ export class AdminOrderComponent implements OnInit {
         }
 
         this.order = res.body.value;
+        this.selectedStatus = res.body.value.status;
+        this.lastStatus = res.body.value.status;
+
         this.loadStatus = LoadStatus.LOADED;
 
       },
@@ -82,7 +103,30 @@ export class AdminOrderComponent implements OnInit {
         this.loadStatus = LoadStatus.ERROR;
 
       }
-    })
+    });
+  }
+
+  editOrderStatus(status: string): void {
+    const loadingDialog = this.dialogsService.openLoadingDialog();
+
+    this.ordersService.modifyStatus(this.orderId, status).subscribe({
+      next: () => {
+
+        loadingDialog.close();
+
+        this.dialogsService.openDialogSuccess('Pedido editado com sucesso!');
+        this.getOrder();
+
+      },
+      error: (err) => {
+
+        loadingDialog.close();
+
+        console.error(err);
+        this.dialogsService.openDialogError(err.error.message);
+
+      }
+    });
   }
 
 
@@ -92,8 +136,28 @@ export class AdminOrderComponent implements OnInit {
     this.dialogsService.openActionDialog('Cancelar pedido?').subscribe({
       next: (res) => {
 
+        if (res == 'confirm') this.editOrderStatus('CANCELADO');
+
       }
-    })
+    });
+  }
+
+  restoreActionDialog(): void {
+    this.dialogsService.openActionDialog('Recuperar pedido?').subscribe({
+      next: (res) => {
+
+        if (res == 'confirm') this.editOrderStatus('CONFIRMADO');
+
+      }
+    });
+  }
+
+
+
+
+  isLastStatusDifferent(): boolean {
+    if (this.selectedStatus != this.lastStatus) return true;
+    return false;
   }
 
 

@@ -1,0 +1,68 @@
+.filter-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+
+
+
+.close-img {
+    width: 25px;
+    height: 25px;
+
+    margin-left: auto;
+    margin-right: 20px;
+
+    cursor: pointer;
+}
+
+
+
+
+.section-boxes {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+
+.section-box {
+    width: fit-content;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section-title-txt {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.option-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+}
+
+
+
+
+
+
+
+
+.btn-box {
+    max-width: 400px;
+    height: 40px;
+    min-height: 40px;
+}

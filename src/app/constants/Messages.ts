@@ -1,3 +1,4 @@
 export const AppMessages = {
-    fieldError: 'Verifique os campos e tente novamente'
+    error: 'Algo deu errado, tente novamente mais tarder',
+    fieldError: 'Verifique os campos e tente novamente',
 }

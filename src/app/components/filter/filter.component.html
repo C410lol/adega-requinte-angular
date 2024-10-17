@@ -1,0 +1,210 @@
+<div class="filter-box page">
+
+    <img (click)="closeFilter()" class="close-img" src="../../../assets/close.png" />
+    <p class="page-title-txt">Filtros</p>
+
+
+
+
+    <div class="section-boxes">
+
+        <div class="section-box">
+            <p class="section-title-txt">Categoria</p>
+    
+            <div class="option-boxes">
+    
+                <app-checkbox 
+                (check)="typesCheck($event)" 
+                [placeholder]="'Vinhos'" 
+                [value]="'Vinho'" 
+                [checked]="isInTypes('Vinho')"
+                />
+
+                <app-checkbox 
+                (check)="typesCheck($event)" 
+                [placeholder]="'Sucos'" 
+                [value]="'Suco'" 
+                [checked]="isInTypes('Suco')"
+                />
+
+                <app-checkbox 
+                (check)="typesCheck($event)" 
+                [placeholder]="'Acessórios'" 
+                [value]="'Acessório'" 
+                [checked]="isInTypes('Acessório')"
+                />
+    
+            </div>
+        </div>
+
+        <div class="section-box">
+            <p class="section-title-txt">Categoria</p>
+    
+            <div class="option-boxes">
+    
+                <app-checkbox 
+                (check)="categoriesCheck($event)" 
+                [placeholder]="'Tintos'" 
+                [value]="'Tinto'" 
+                [checked]="isInCategories('Tinto')"
+                />
+
+                <app-checkbox 
+                (check)="categoriesCheck($event)" 
+                [placeholder]="'Brancos'" 
+                [value]="'Branco'" 
+                [checked]="isInCategories('Branco')"
+                />
+
+                <app-checkbox 
+                (check)="categoriesCheck($event)" 
+                [placeholder]="'Rosés'" 
+                [value]="'Rosé'" 
+                [checked]="isInCategories('Rosé')"
+                />
+
+                <app-checkbox 
+                (check)="categoriesCheck($event)" 
+                [placeholder]="'Espumantes'" 
+                [value]="'Espumante'" 
+                [checked]="isInCategories('Espumante')"
+                />
+
+                <app-checkbox 
+                (check)="categoriesCheck($event)" 
+                [placeholder]="'De Sobremesa'" 
+                [value]="'Vinho_de_Sobremesa'" 
+                [checked]="isInCategories('Vinho_de_Sobremesa')"
+                />
+    
+            </div>
+        </div>
+    
+        <div class="section-box">
+            <p class="section-title-txt">País</p>
+
+            <div class="option-boxes">
+    
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Brasileiros'" 
+                [value]="'Brasil'"
+                [checked]="isInCountries('Brasil')"
+                />
+
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Argentinos'" 
+                [value]="'Argentina'" 
+                [checked]="isInCountries('Argentina')"
+                />
+
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Chilenos'" 
+                [value]="'Chile'" 
+                [checked]="isInCountries('Chile')"
+                />
+ 
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Portugueses'" 
+                [value]="'Portugal'" 
+                [checked]="isInCountries('Portugal')"
+                />
+
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Italianos'" 
+                [value]="'Itália'" 
+                [checked]="isInCountries('Itália')"
+                />
+
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Franceses'" 
+                [value]="'França'" 
+                [checked]="isInCountries('França')"
+                />
+
+            </div>
+        </div>
+    
+        <div class="section-box">
+            <p class="section-title-txt">Classificação</p>
+
+            <div class="option-boxes">
+    
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Nature'"
+                [value]="'Nature'" 
+                [checked]="isInClassifications('Nature')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Extra Brut'" 
+                [value]="'Extra Brut'" 
+                [checked]="isInClassifications('Extra Brut')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Brut'" 
+                [value]="'Brut'" 
+                [checked]="isInClassifications('Brut')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Moscatel'" 
+                [value]="'Moscatel'" 
+                [checked]="isInClassifications('Moscatel')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Demi Sec'" 
+                [value]="'Demi Sec'" 
+                [checked]="isInClassifications('Demi Sec')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Seco'" 
+                [value]="'Seco'" 
+                [checked]="isInClassifications('Seco')"
+                />
+
+                <app-checkbox 
+                (check)="classificationsCheck($event)" 
+                [placeholder]="'Suave'" 
+                [value]="'Suave'"
+                [checked]="isInClassifications('Suave')"
+                />
+
+            </div>
+        </div>
+    
+        <div class="section-box">
+            <p class="section-title-txt">Ordenar por</p>
+
+            <select [(ngModel)]="sortString" class="input">
+                <option value='{"orderBy":"name","direction":"asc"}'>A-Z</option>
+                <option value='{"orderBy":"name","direction":"desc"}'>Z-A</option>
+                <option value='{"orderBy":"regPrice","direction":"asc"}'>Menor preço</option>
+                <option value='{"orderBy":"regPrice","direction":"desc"}'>Maior preço</option>
+            </select>
+        </div>
+
+    </div>
+
+
+
+
+    <div (click)="applyFilters()" class="btn-box green-btn">
+        <p class="btn-txt">Aplicar filtros</p>
+    </div>
+
+</div>

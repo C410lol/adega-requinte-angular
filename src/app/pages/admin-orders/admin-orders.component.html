@@ -1,8 +1,12 @@
-<div class="admin-orders-box page">
+<div [ngSwitch]="loadStatus" class="admin-orders-box page">
 
-    <div class="content-box">
+    <p class="page-title-txt">Gerenciar Pedidos</p>
 
-        <p class="page-title-txt">Gerenciar Pedidos</p>
+
+    <input *ngIf="loadStatus != 3" (input)="textInputEvent()" [(ngModel)]="text" class="input" placeholder="Procurar produto..." /> 
+    
+
+    <div *ngSwitchCase="1" class="content-box">
         
         <div class="products-box">
 
@@ -14,5 +18,12 @@
         </div>
 
     </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

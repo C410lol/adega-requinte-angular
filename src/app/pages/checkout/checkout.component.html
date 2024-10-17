@@ -1,6 +1,11 @@
-<div class="checkout-box page">
+<app-back />
 
-    <div class="content-box">
+
+
+
+<div [ngSwitch]="loadStatus" class="checkout-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
 
 
 
@@ -123,7 +128,7 @@
                             </div>
     
                             <div class="address-input-box">
-                                <p>Ponto de referência*</p>
+                                <p>Ponto de referência</p>
                                 <input [(ngModel)]="referencePoint" placeholder="Perto do restaurante"/>
                             </div>
     
@@ -263,7 +268,10 @@
     
         <div class="section-box">
 
-            <p class="section-title-txt">Confirmar pedido</p>
+            <div>
+                <p class="section-title-txt">Confirmar pedido</p>
+                <p class="warning-txt">*O desconto do consórcio não é aplicado em produtos em promoção</p>
+            </div>
 
             <div class="option-boxes">
 
@@ -290,6 +298,13 @@
 
                 <hr *ngIf="selectedDelivery == 'ENTREGAR'" class="division-line" />
 
+                <div *ngIf="isDiscountApplied" class="price-box">
+                    <p class="green-txt">Consórcio</p>
+                    <p class="green-txt">10% OFF</p>
+                </div>
+
+                <hr *ngIf="isDiscountApplied" class="division-line" />
+
                 <div class="price-box">
                     <p class="total-price-txt">Total</p>
                     <p class="total-price-txt">R${{getPriceRounded(totalPrice)}}</p>
@@ -315,5 +330,12 @@
 
 
     </div>
+    
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

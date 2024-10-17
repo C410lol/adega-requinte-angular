@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UserType } from '../../types/UserType';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrls: [
     './header.component.css',
@@ -23,6 +24,8 @@ export class HeaderComponent implements OnInit{
 
   user = {} as UserType;
 
+  nameFilter: string = '';
+
 
 
 
@@ -36,6 +39,23 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     if (localStorage.getItem('auth') != null) this.isLogged = true;
     this.getUser();
+  }
+
+
+
+
+  submitWineSearch(): void {
+    this.router.navigate(['/'],
+      {
+        queryParams: {name: `${this.nameFilter}`}, 
+        queryParamsHandling: 'merge'
+      }
+    );
+  }
+
+  enterKeyClick(event: any): void {
+    (event.target as HTMLInputElement).blur();
+    this.submitWineSearch();
   }
 
 

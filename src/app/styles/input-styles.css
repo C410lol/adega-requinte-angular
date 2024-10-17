@@ -1,0 +1,64 @@
+.input-box {
+    width: 100%;
+    max-width: 750px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-title-txt {
+    font-size: 20px;
+}
+
+.input {
+    width: 100%;
+    max-width: 750px;
+    height: 40px;
+
+    padding: 0 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 3.5px 10px rgba(0, 0, 0, 0.1);
+
+    outline: none;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+}
+
+
+
+
+
+
+
+.price-input-box {
+    width: 100%;
+    max-width: 750px;
+    height: 40px;
+
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    box-shadow: 0 3.5px 10px rgba(0, 0, 0, 0.1);
+    
+    background-color: white;
+}
+
+.reais-txt {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.non-box-shadow {
+    box-shadow: none;
+}

@@ -17,11 +17,24 @@ import { AddressType } from '../../types/AddressType';
 import { AddressesService } from '../../services/addresses.service';
 import { DialogService } from '../../services/dialog.service';
 import { AppMessages } from '../../constants/Messages';
+import { BackComponent } from "../../components/back/back.component";
+import { ErrorComponent } from '../../components/error/error.component';
+import { CartDTO } from '../../dtos/CartDTO';
+import { UserType } from '../../types/UserType';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule, CheckoutProductComponent, AddressComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RouterModule, 
+    HttpClientModule, 
+    CheckoutProductComponent, 
+    AddressComponent, 
+    BackComponent,
+    ErrorComponent
+  ],
   providers: [OrdersService, AddressesService, DialogService],
   templateUrl: './checkout.component.html',
   styleUrls: [
@@ -37,6 +50,7 @@ export class CheckoutComponent implements OnInit {
   loadStatus: LoadStatus = LoadStatus.LOADING;
 
   userId: string = '';
+  isUserMember: boolean = false;
   userAddresses: AddressType[] = [];
 
   selectedDelivery: string = 'PEGAR';
@@ -47,8 +61,10 @@ export class CheckoutComponent implements OnInit {
   lastExchangeLength: number = 0;
 
   cartProducts: CartWineType[] = [];
+  isDiscountApplied: boolean = false;
   subtotalPrice: number = 0;
   totalPrice: number = 0;
+  lastTotalPrice: number = 0;
 
   // --------------------------------------------- //
 
@@ -81,6 +97,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.getAuth();
     this.getAddresses();
+    this.getUserInfo();
     this.getCartProducts();   
   }
 
@@ -118,16 +135,43 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
+
+
+
+  getUserInfo(): void {
+    const userSStorage = sessionStorage.getItem('user');
+    if (userSStorage == null) return;
+
+    const user: UserType = JSON.parse(userSStorage);
+    this.isUserMember = user.member;
+  }
+
   getCartProducts(): void {
-    const cartProducts = localStorage.getItem('cartProducts');
-    if (cartProducts == null || JSON.parse(cartProducts).length < 1) {
-      this.loadStatus = LoadStatus.EMPTY;
+
+
+    const cartProductsLStorage = localStorage.getItem('cartProducts');
+    if (cartProductsLStorage == null) {
+      this.loadStatus = LoadStatus.ERROR;
       return; 
     }
 
-    this.cartProducts = JSON.parse(cartProducts);
-    this.setTotalPrice();
+    const cartProducts: CartWineType[] = JSON.parse(cartProductsLStorage);
+    if (cartProducts.length < 1) {
+      this.loadStatus = LoadStatus.EMPTY;
+      return;
+    }
 
+    this.cartProducts = cartProducts;
+    
+    cartProducts.forEach((e) => {
+      this.subtotalPrice += e.subtotalPrice;
+      if (this.isUserMember && !e.wine.hasProm) {
+        this.isDiscountApplied = true;
+        this.totalPrice += ((e.subtotalPrice * 90) / 100);
+      } else this.totalPrice += e.subtotalPrice;
+    });
+
+    this.lastTotalPrice = this.totalPrice;
     this.loadStatus = LoadStatus.LOADED;
   }
 
@@ -136,16 +180,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   removeDeliveryTax(): void {
-    this.totalPrice = this.subtotalPrice;
+    this.totalPrice = this.lastTotalPrice;
   }
 
   getPriceRounded(price: number): number {
     return parseFloat(price.toFixed(2));
-  }
-
-  setTotalPrice(): void {
-    this.cartProducts.forEach((e) => this.subtotalPrice += e.totalPrice);
-    this.totalPrice = this.subtotalPrice;
   }
 
 
@@ -183,7 +222,7 @@ export class CheckoutComponent implements OnInit {
     let orderProducts: OrderProductDTO[] = [];
     this.cartProducts.forEach((e) => orderProducts.push({
       productId: e.wine.id, 
-      totalPrice: e.totalPrice, 
+      totalPrice: e.subtotalPrice, 
       quantity: e.quantity
     }));
     order.orderProducts = orderProducts;
@@ -225,17 +264,24 @@ export class CheckoutComponent implements OnInit {
     }
     //SET Payment AND Exchange
 
+    const loadingDialog = this.dialogService.openLoadingDialog();
 
     this.ordersService.save(this.userId, order, this.selectedAddress).subscribe({
       next: (res) => {
 
+        loadingDialog.close();
+
+        sessionStorage.removeItem('cart');
         localStorage.removeItem('cartProducts');
         this.router.navigate(['/confirmed-order'], {queryParams: {orderId: res.body?.value.id}});
 
       },
       error: (err) => {
 
+        loadingDialog.close();
+
         console.log(err);
+        this.dialogService.openDialogError(err.error.message);
 
       }
     });

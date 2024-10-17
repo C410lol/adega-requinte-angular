@@ -1,12 +1,17 @@
-<div class="wine-box page">
+<app-back />
 
-    <div class="content-box">
+
+
+
+<div [ngSwitch]="loadStatus" class="wine-box page">
+
+    <div *ngSwitchCase="1" class="content-box">
 
         <div class="img-box">
 
-            <img class="arrow-img back-img" src="../../../assets/back.png"/>
-            <img class="wine-img" src="https://i.imgur.com/YutHoJD.jpgD"/>
-            <img class="arrow-img forward-img" src="../../../assets/forward.png"/>
+            <img *ngIf="ifProductsHasMoreThanOneImage()" (click)="decreaseImageIndex()" class="arrow-img back-img" src="../../../assets/back.png"/>
+            <img class="wine-img" [src]="seletedImage"/>
+            <img *ngIf="ifProductsHasMoreThanOneImage()" (click)="increaseImageIndex()" class="arrow-img forward-img" src="../../../assets/forward.png"/>
 
         </div>
 
@@ -19,33 +24,53 @@
 
             <div class="subinfo-boxes">
                 <div class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/wine.png"/>
+                    <img class="subinfo-img" src="../../../assets/info.png">
                     <p class="subinfo-txt ">{{wine.type}}</p>
                 </div>
-                <div class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/info.png">
+                <div *ngIf="wine.type == 'Vinho'" class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/wine.png"/>
+                    <p class="subinfo-txt ">{{wine.category}}</p>
+                </div>
+                <div *ngIf="wine.type == 'Vinho'" class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/label.png"/>
                     <p class="subinfo-txt ">{{wine.classification}}</p>
                 </div>
-                <div class="subinfo-box">
+                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/grapes.png"/>
+                    <p class="subinfo-txt ">{{grapes}}</p>
+                </div>
+                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
                     <img class="subinfo-img" src="../../../assets/location.png"/>
                     <p class="subinfo-txt ">{{wine.country}}</p>
                 </div>
-                <div class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/grapes.png"/>
-                    <p class="subinfo-txt ">{{getGrapes()}}</p>
+                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
+                    <img class="subinfo-img" src="../../../assets/jar.png"/>
+                    <p class="subinfo-txt ">{{wine.size}}</p>
                 </div>
             </div>
 
             <div [ngSwitch]="wine.status" class="buy-box">
 
                 <div *ngSwitchCase="'DISPONÍVEL'">
-                    <div *ngIf="wine.hasProm" class="prom-box">
+                    <div *ngIf="wine.hasProm" class="prom-box red-box">
                         <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
                     </div>
 
-                    <div class="prices-box">
-                        <p [ngClass]="wine.hasProm ? 'smaller-txt' : ''" class="price-txt">R${{wine.regPrice}}</p>
+                    <div *ngIf="!wine.hasProm" class="prom-box green-box">
+                        <p class="prom-percentage-txt">10% OFF no consórcio</p>
+                    </div>
+
+
+
+
+                    <div *ngIf="wine.hasProm" class="prices-box">
                         <p *ngIf="wine.hasProm" class="price-txt">R${{wine.promPrice}}</p>
+                        <p [ngClass]="wine.hasProm ? ['smaller-txt', 'line-txt'] : ''" class="price-txt">R${{wine.regPrice}}</p>
+                    </div>
+
+                    <div *ngIf="!wine.hasProm" class="prices-box column-box">
+                        <p class="price-txt">R${{getMemberDiscountPrice()}}</p>
+                        <p class="price-txt smaller-txt"> R${{wine.regPrice}} <span class="span-txt">preço regular</span></p>
                     </div>
 
                     <div class="btn-boxes">
@@ -73,5 +98,12 @@
         </div>
 
     </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
 
 </div>

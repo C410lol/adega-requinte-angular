@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApiUrls } from '../constants/ApiUrls';
+import { ApiUrls, AuthorizationHeader } from '../constants/API';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseReturn } from '../types/ResponseReturn';
@@ -57,6 +57,7 @@ export class UsersService {
     return this.httpClient.get<ResponseReturn<UserType>>(
       `${this.usersUrl}/${userId}`,
       {
+        headers: AuthorizationHeader(),
         observe: 'response'
       }
     );

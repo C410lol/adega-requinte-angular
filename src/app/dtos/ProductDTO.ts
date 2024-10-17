@@ -4,13 +4,15 @@ export type ProductDTO = {
     name: string,
     description: string,
     type: string,
-    country: string,
-    classification: string,
-    size: string,
+    category?: string,
+    country?: string,
+    classification?: string,
+    size?: string,
     quantity: number,
     regPrice: number,
     hasProm: boolean,
-    promPrice: number,
+    promPrice?: number,
     status: string,
-    grapes: GrapeType[]
+    images?: string[],
+    grapes?: GrapeType[]
 }

@@ -13,7 +13,7 @@
 
     <div class="info-box">
 
-        <img class="product-img" src="https://i.imgur.com/YutHoJD.jpgD" />
+        <img class="product-img" [src]="getFirstImage()" />
 
         <div class="product-desc-box">
 
@@ -21,11 +21,13 @@
 
             <div class="desc-box">
     
-                <p>{{product.type}}</p>
-                <p>&#8226;</p>
-                <p>{{product.country}}</p>
-                <p>&#8226;</p>
-                <p>{{getFirstGrape()}}</p>
+                <div class="desc-box">
+                    <p>{{product.type}}</p>
+                    <p *ngIf="product.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="product.type == 'Vinho'">{{product.category}}</p>
+                    <p *ngIf="product.type == 'Vinho'">&#8226;</p>
+                    <p *ngIf="product.type == 'Vinho'" class="hidden-txt">{{product.classification}}</p>
+                </div>
     
             </div>
 

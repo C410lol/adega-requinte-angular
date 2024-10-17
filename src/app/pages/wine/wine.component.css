@@ -4,6 +4,7 @@
     display: flex;
     flex-flow: wrap;
     justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
@@ -31,6 +32,8 @@
 .wine-img {
     width: 75%;
     height: 90%;
+    max-width: 400px;
+    max-height: 600px;
 }
 
 
@@ -108,25 +111,34 @@
 }
 
 .prom-box {
-    width: 100px;
-    height: 20px;
-
-    margin: 5px 0;
+    width: fit-content;
     
-    padding: 12.5px 0;
+    padding: 5px 10px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     border-radius: 5px;
+}
 
+.red-box {
     background-color: #c71515;
+}
+
+.green-box {
+    background-color: #06b400;
 }
 
 .prom-percentage-txt {
     color: white;
 }
+
+
+
+
+
+
 
 
 .prices-box {
@@ -138,14 +150,32 @@
     gap: 10px;
 }
 
+.column-box {
+    flex-direction: column;
+    align-items: start;
+    gap: 0;
+}
+
 .price-txt {
     font-size: 30px;
     font-weight: 500;
 }
 
 .smaller-txt {
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(105, 105, 105);
+}
+
+.line-txt {
     text-decoration: line-through;
+}
+
+
+
+
+.span-txt {
+    font-size: 13.5px;
 }
 
 

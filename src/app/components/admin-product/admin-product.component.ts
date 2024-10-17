@@ -31,10 +31,16 @@ export class AdminProductComponent {
 
 
 
+  getFirstImage(): string {
+    if (this.product.images == null || this.product.images.length < 1) return '../../assets/wine_img.png';
+    return this.product.images[0];
+  }
+
   getFirstGrape(): string {
-    if (this.product.grapes.length < 1) return 'Nenhuma';
-    if (this.product.grapes.length > 1) return 'Uvas Variadas';
-    return this.product.grapes[0].name;
+    //if (this.product.grapes.length < 1) return 'Nenhuma';
+    //if (this.product.grapes.length > 1) return 'Uvas Variadas';
+    //return this.product.grapes[0].name;
+    return '';
   }
 
   ifHasProm(): string {

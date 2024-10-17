@@ -1,0 +1,28 @@
+.loading-dialog-box {
+    padding: 50px;
+
+    background-color: transparent;
+}
+
+
+
+
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.486); 
+    border-top: 8px solid #3498db; 
+    border-radius: 50%;
+    width: 52.5px;
+    height: 52.5px;
+    animation: spin 1s linear infinite;
+
+    background-color: transparent;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

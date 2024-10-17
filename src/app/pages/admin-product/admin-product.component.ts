@@ -28,14 +28,12 @@ export class AdminProductComponent implements OnInit {
   productId: string = '';
   ifProductExists: boolean = false;
 
-  selectedImages: string[] = [];
-
-  isGrapesDropDownShown: boolean = false;
-  allGrapes: { name: string, value: string }[] = [];
+  selectedImages: { url: string, file: File }[] = [];
 
   name: string = '';
   description: string = '';
-  type: string = 'Tinto';
+  type: string = 'Vinho';
+  category: string = 'Tinto';
   country: string = 'Brasil';
   classification: string = 'Nature';
   size: string = '';
@@ -45,9 +43,11 @@ export class AdminProductComponent implements OnInit {
   promPrice: string = '';
   price: string = '';
   status: string = 'DISPONÍVEL';
+  images: string[] = [];
 
+  isGrapesDropDownShown: boolean = false;
+  allGrapes: { name: string, value: string }[] = [];
   selectedGrapes: { name: string, value: string }[] = [];
-
 
 
 
@@ -91,6 +91,7 @@ export class AdminProductComponent implements OnInit {
 
 
   getProduct(): void {
+    this.loadStatus = LoadStatus.LOADING;
     this.winesService.getWineById(this.productId).subscribe({
       next: (res) => {
 
@@ -99,19 +100,27 @@ export class AdminProductComponent implements OnInit {
           return;
         }
 
-        this.name = res.body.name;
-        this.description = res.body.description;
-        this.type = res.body.type;
-        this.country = res.body.country;
-        this.classification = res.body.classification;
-        this.size = res.body.size;
-        this.quantity = res.body.quantity;
-        this.price = res.body.regPrice.toString();
-        this.hasProm = res.body.hasProm.toString();
-        this.promPrice = res.body.promPrice.toString();
-        this.status = res.body.status;
+        const body = res.body;
 
-        this.selectedGrapes = res.body.grapes.map((e) => ({ name: e.name, value: e.id }));
+        this.name = body.name;
+        this.description = body.description;
+        this.type = body.type;
+        this.quantity = body.quantity;
+        this.price = body.regPrice.toString();
+        this.hasProm = body.hasProm.toString();
+        this.status = body.status;
+
+        if (body.category != null) this.category = body.category;
+        if (body.country != null) this.country = body.country;
+        if (body.classification != null) this.classification = body.classification;
+        if (body.size != null) this.size = body.size;
+        if (body.promPrice != null) this.promPrice = body.promPrice.toString();
+
+        if (body.images != null) this.images = body.images;
+
+        if (body.grapes != null) {
+          this.selectedGrapes = body.grapes.map((e) => ({ name: e.name, value: e.id }));
+        }
 
         this.loadStatus = LoadStatus.LOADED;
 
@@ -138,8 +147,12 @@ export class AdminProductComponent implements OnInit {
   }
 
   saveProduct(): void {
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.winesService.save(this.createProductDTO()).subscribe({
       next: (res) => {
+
+        loadingDialog.close();
 
         if (!res.ok) {
           this.dialogService.openDialogError('Algo deu errado, tente novamente mais tarde');
@@ -152,6 +165,8 @@ export class AdminProductComponent implements OnInit {
       },
       error: (err) => {
 
+        loadingDialog.close();
+
         console.error(err);
         this.dialogService.openDialogError(err.error.message);
 
@@ -160,8 +175,12 @@ export class AdminProductComponent implements OnInit {
   }
 
   editProduct(): void {
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.winesService.edit(this.productId, this.createProductDTO()).subscribe({
       next: (res) => {
+
+        loadingDialog.close();
 
         if (!res.ok) {
           this.dialogService.openDialogError('Algo deu errado, tente novamente mais tarde');
@@ -169,12 +188,13 @@ export class AdminProductComponent implements OnInit {
         }
 
         this.dialogService.openDialogSuccess('Produto editado com sucesso!');
-        setTimeout(() => {
-          location.reload();
-        }, 1000);
+        this.selectedImages = [];
+        this.getProduct();
 
       },
       error: (err) => {
+
+        loadingDialog.close();
 
         console.error(err);
         this.dialogService.openDialogError(err.error.message);
@@ -184,8 +204,12 @@ export class AdminProductComponent implements OnInit {
   }
 
   deleteProduct(): void {
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.winesService.delete(this.productId).subscribe({
       next: (res) => {
+
+        loadingDialog.close();
 
         if (!res.ok) {
           this.dialogService.openDialogError('Algo deu errado, tente novamente mais tarde');
@@ -198,6 +222,8 @@ export class AdminProductComponent implements OnInit {
       },
       error: (err) => {
 
+        loadingDialog.close();
+
         console.error(err);
         this.dialogService.openDialogError(err.error.message);
 
@@ -209,24 +235,31 @@ export class AdminProductComponent implements OnInit {
 
 
   selectImage(event: any): void {
-    console.log(this.selectedImages);
-    const files: FileList = event.target.files;
-
-    console.log(files);
+    const files: File[] = Array.from(event.target.files);
 
     if (files.length < 1) return;
 
-    Array.from(files).forEach((e) => {
+    files.forEach((e) => {
+      let selectedImage = {} as {url: string, file: File}; 
+      selectedImage.file = e;
+
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.selectedImages.push(e.target.result);
+        selectedImage.url = e.target.result;
+        this.selectedImages.push(selectedImage);
       }
       reader.readAsDataURL(e);
     });
   }
 
-  deleteSelectedImage(img: string): void {
-    this.selectedImages.splice(this.selectedImages.indexOf(img), 1);
+  deleteSelectedImage(url: string): void {
+    if (url.startsWith('https')) {
+      this.images.splice(this.images.indexOf(url), 1);
+    } else this.selectedImages.splice(this.selectedImages.findIndex((e) => e.url == url), 1);
+  }
+
+  getImagesList(): string[] {
+    return this.images.concat(this.selectedImages.map((e) => e.url));
   }
 
 
@@ -304,22 +337,40 @@ export class AdminProductComponent implements OnInit {
     return true;
   }
 
-  createProductDTO(): ProductDTO {
+  createProductDTO(): FormData {
+    const form = new FormData();
+
+    this.selectedImages.forEach((e) => {
+      form.append('images', e.file);
+    });
+
     let productDTO = {} as ProductDTO;
     productDTO.name = this.name;
     productDTO.description = this.description,
     productDTO.type = this.type;
-    productDTO.country = this.country;
-    productDTO.classification = this.classification;
-    productDTO.size = this.size;
     productDTO.quantity = this.quantity;
     productDTO.regPrice = Number.parseFloat(this.price);
     productDTO.hasProm = this.hasProm == 'true';
-    productDTO.promPrice = Number.parseFloat(this.promPrice);
     productDTO.status = this.status;
-    productDTO.grapes = this.selectedGrapes.map((e) => ({ id: e.value, name: e.name }));
 
-    return productDTO;
+    if (this.type == 'Vinho' || this.type == 'Suco') {
+      productDTO.size = this.size;
+      productDTO.country = this.country;
+      productDTO.grapes = this.selectedGrapes.map((e) => ({ id: e.value, name: e.name }));
+
+      if (this.type == 'Vinho') {
+        productDTO.category = this.category;
+        productDTO.classification = this.classification;
+      }
+    }
+    
+    if (this.hasProm == 'true') productDTO.promPrice = Number.parseFloat(this.promPrice);
+    
+    if (this.ifProductExists) productDTO.images = this.images;
+
+    form.append('product', JSON.stringify(productDTO));
+
+    return form;
   }
 
 

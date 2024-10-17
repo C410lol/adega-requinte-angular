@@ -24,10 +24,9 @@ export class ProductComponent {
 
 
 
-  getFirtsGrape(): string {
-    if (this.wine.grapes.length < 1) return 'Nenhuma';
-    if (this.wine.grapes.length > 1) return 'Uvas Variadas';
-    return this.wine.grapes[0].name;
+  getFirstImage(): string {
+    if (this.wine.images == null || this.wine.images.length < 1) return '../../assets/wine_img.png';
+    return this.wine.images[0];
   }
 
 

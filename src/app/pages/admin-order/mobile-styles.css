@@ -1,0 +1,17 @@
+@media screen and (width <= 1024px){
+
+    .products-box,
+    .payment-box {
+        flex: 0 0 100%;
+    }
+
+}
+
+@media screen and (width <= 768px){
+
+    .config-btns-box {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+}

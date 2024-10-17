@@ -58,10 +58,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    const loadingDialog = this.dialogService.openLoadingDialog();
+
     this.usersService.loginUser(
       {email: this.email, password: this.password}
     ).subscribe({
       next: (res) => {
+
+        loadingDialog.close();
 
         if (res.body == null) return;
 
@@ -75,6 +79,8 @@ export class LoginComponent implements OnInit {
 
       },
       error: (err) => {
+
+        loadingDialog.close();
 
         console.log(err);
         this.dialogService.openDialogError(`${err.error.message}`);

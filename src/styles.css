@@ -67,7 +67,24 @@ p {
 }
 
 .dialog {
+    background-color: white;
+    border-radius: 5px;
     transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dialog {
+    background-color: white;
+}
+
+.loading-dialog {
+    background-color: transparent;
+    box-shadow: none;
+} 
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 
