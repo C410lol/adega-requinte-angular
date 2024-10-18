@@ -12,6 +12,7 @@ export type WineType = {
     quantity: number,
     currentPrice: number,
     regPrice: number,
+    memberPrice: number,
     hasProm: boolean,
     promPercentage?: number,
     promPrice?: number,
