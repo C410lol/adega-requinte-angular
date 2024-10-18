@@ -14,8 +14,8 @@
     </div>
 
     <div class="product-info product-prices-box">
-        <p class="product-price">1un. R${{orderProduct.product.regPrice}}</p>
-        <p class="product-total-price">{{orderProduct.quantity}}un. R${{orderProduct.totalPrice}}</p>
+        <p class="product-price">1un. R${{formatPriceNumber(orderProduct.product.regPrice)}}</p>
+        <p class="product-total-price">{{orderProduct.quantity}}un. R${{formatPriceNumber(orderProduct.totalPrice)}}</p>
     </div>
 
 </div>

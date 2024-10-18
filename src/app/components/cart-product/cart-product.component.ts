@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WinesService } from '../../services/wines.service';
 import { LoadStatus } from '../../constants/LoadStatusEnum';
 import { CommonModule } from '@angular/common';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-cart-product',
@@ -129,6 +130,10 @@ export class CartProductComponent implements OnInit {
 
   getRoudendPrice(): number {
     return parseFloat(this.cartProduct.subtotalPrice.toFixed(2));
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 }

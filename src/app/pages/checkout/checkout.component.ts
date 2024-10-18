@@ -21,6 +21,7 @@ import { BackComponent } from "../../components/back/back.component";
 import { ErrorComponent } from '../../components/error/error.component';
 import { CartDTO } from '../../dtos/CartDTO';
 import { UserType } from '../../types/UserType';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-checkout',
@@ -185,6 +186,10 @@ export class CheckoutComponent implements OnInit {
 
   getPriceRounded(price: number): number {
     return parseFloat(price.toFixed(2));
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 

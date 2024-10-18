@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OrderProductType } from '../../types/OrderProductType';
 import { CommonModule } from '@angular/common';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-order-product',
@@ -26,6 +27,10 @@ export class OrderProductComponent {
       return '../../assets/wine_img.png';
     }
     return this.orderProduct.product.images[0];
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 }

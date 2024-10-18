@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CartWineType } from '../../types/CartWineType';
 import { CommonModule } from '@angular/common';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-checkout-product',
@@ -28,6 +29,10 @@ export class CheckoutProductComponent {
 
   getRoundedPrice(): number {
     return parseFloat(this.cartProduct.subtotalPrice.toFixed(2));
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 }

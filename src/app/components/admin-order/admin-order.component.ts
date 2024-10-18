@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { OrderType } from '../../types/OrderType';
 import { Router } from '@angular/router';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-admin-order',
@@ -33,6 +34,10 @@ export class AdminOrderComponent {
 
   getFormatedEnum(string: string): string {
     return string[0] + string.slice(1).toLowerCase();
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 

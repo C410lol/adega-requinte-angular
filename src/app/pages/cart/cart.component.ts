@@ -7,6 +7,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ErrorComponent } from "../../components/error/error.component";
 import { UserType } from '../../types/UserType';
 import { CartDTO } from '../../dtos/CartDTO';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-cart',
@@ -92,6 +93,10 @@ export class CartComponent implements OnInit {
   setTotalPrice(prices: {total: number, subtotal: number}): void {
     this.subTotalPrice += prices.subtotal;
     this.totalPrice += prices.total;
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 

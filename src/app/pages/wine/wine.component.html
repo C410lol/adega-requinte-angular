@@ -64,13 +64,13 @@
 
 
                     <div *ngIf="wine.hasProm" class="prices-box">
-                        <p *ngIf="wine.hasProm" class="price-txt">R${{wine.promPrice}}</p>
-                        <p [ngClass]="wine.hasProm ? ['smaller-txt', 'line-txt'] : ''" class="price-txt">R${{wine.regPrice}}</p>
+                        <p *ngIf="wine.hasProm" class="price-txt">R${{formatPriceNumber(wine.promPrice)}}</p>
+                        <p [ngClass]="wine.hasProm ? ['smaller-txt', 'line-txt'] : ''" class="price-txt">R${{formatPriceNumber(wine.regPrice)}}</p>
                     </div>
 
                     <div *ngIf="!wine.hasProm" class="prices-box column-box">
-                        <p class="price-txt">R${{getMemberDiscountPrice()}}</p>
-                        <p class="price-txt smaller-txt"> R${{wine.regPrice}} <span class="span-txt">preço regular</span></p>
+                        <p class="price-txt">R${{formatPriceNumber(getMemberDiscountPrice())}}</p>
+                        <p class="price-txt smaller-txt"> R${{formatPriceNumber(wine.regPrice)}} <span class="span-txt">preço regular</span></p>
                     </div>
 
                     <div class="btn-boxes">

@@ -14,8 +14,8 @@
     </div>
 
     <div class="product-info product-prices-box">
-        <p class="product-price">1un. R${{cartProduct.wine.currentPrice}}</p>
-        <p class="product-total-price">{{cartProduct.quantity}}un. R${{getRoundedPrice()}}</p>
+        <p class="product-price">1un. R${{formatPriceNumber(cartProduct.wine.currentPrice)}}</p>
+        <p class="product-total-price">{{cartProduct.quantity}}un. R${{formatPriceNumber(getRoundedPrice())}}</p>
     </div>
 
 </div>

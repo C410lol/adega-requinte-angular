@@ -24,8 +24,8 @@
 
             <div class="prices-box">
 
-                <p class="quantity-price-txt montserrat-font">{{cartProduct.quantity}}un. R${{getRoudendPrice()}}</p>
-                <p class="single-price-txt montserrat-font">1un. R${{cartProduct.wine.currentPrice}}</p>
+                <p class="quantity-price-txt montserrat-font">{{cartProduct.quantity}}un. R${{formatPriceNumber(getRoudendPrice())}}</p>
+                <p class="single-price-txt montserrat-font">1un. R${{formatPriceNumber(cartProduct.wine.currentPrice)}}</p>
 
             </div>
 

@@ -9,6 +9,7 @@ import { OrderProductComponent } from '../../components/order-product/order-prod
 import { BackComponent } from "../../components/back/back.component";
 import { DialogService } from '../../services/dialog.service';
 import { ErrorComponent } from '../../components/error/error.component';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-order',
@@ -141,6 +142,10 @@ export class OrderComponent implements OnInit {
 
   getFormatedEnum(string: string): string {
     return string[0] + string.slice(1).toLowerCase();
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 }

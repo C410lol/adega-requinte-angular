@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { WineType } from '../../types/WineType';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-admin-product',
@@ -36,12 +37,12 @@ export class AdminProductComponent {
     return this.product.images[0];
   }
 
-  getFirstGrape(): string {
-    //if (this.product.grapes.length < 1) return 'Nenhuma';
-    //if (this.product.grapes.length > 1) return 'Uvas Variadas';
-    //return this.product.grapes[0].name;
-    return '';
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
+
+
+
 
   ifHasProm(): string {
     if (this.product.hasProm) return 'SIM';

@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { DialogService } from '../../services/dialog.service';
 import { BackComponent } from "../../components/back/back.component";
 import { ErrorComponent } from "../../components/error/error.component";
+import { formatPriceNumber } from '../../constants/Utils';
 
 @Component({
   selector: 'app-wine',
@@ -171,6 +172,10 @@ export class WineComponent implements OnInit {
 
   getMemberDiscountPrice(): number {
     return parseFloat(((this.wine.regPrice * 90) / 100).toFixed(2));
+  }
+
+  formatPriceNumber(number?: number): string {
+    return formatPriceNumber(number);
   }
 
 
