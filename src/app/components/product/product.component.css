@@ -62,6 +62,29 @@
     align-items: center;
 }
 
+
+
+
+
+
+
+
+.prices-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
 .name-txt {
     max-width: 90%;
 
@@ -80,18 +103,23 @@
 }
 
 .prom-percentage-box {
-    width: 80px;
     height: 17.5px;
     
-    padding: 12.5px 0;
+    padding: 12.5px 7.5px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     border-radius: 2.5px;
+}
 
+.red-box {
     background-color: #c71515;
+}
+
+.green-box {
+    background-color: #06b400;
 }
 
 .prom-percentage-txt {
@@ -178,8 +206,17 @@
     font-size: 20px;
 }
 
+.smaller-txt {
+    font-size: 15px;
+    font-weight: 400;
+
+    color: rgb(131, 131, 131);
+}
+
 .line-txt {
     font-size: 16.5px;
+    font-weight: 400;
+
     text-decoration: line-through;
 }
 

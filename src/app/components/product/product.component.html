@@ -16,15 +16,30 @@ class="product-box"
 
     <div *ngIf="wine.status == 'DISPONÍVEL'" class="info-section-box">
 
-        <p [ngClass]="wine.hasProm ? 'line-txt' : 'price-txt'" class="price-txt">R${{wine.regPrice}}</p>
+        <div *ngIf="!wine.hasProm" class="prices-box">
+            <p class="price-txt smaller-txt">R${{getNumberFormated(wine.regPrice)}} regular</p>
 
-        <div *ngIf="wine.hasProm" class="prom-box">
-    
-            <p class="prom-price-txt price-txt">R${{wine.promPrice}}</p>
-            <div class="prom-percentage-box">
-                <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+            <div class="prom-box">
+        
+                <p class="prom-price-txt price-txt">R${{getNumberFormated(getMemberPrice())}}</p>
+                <div class="prom-percentage-box green-box">
+                    <p class="prom-percentage-txt">Consórcio</p>
+                </div>
+        
             </div>
-    
+        </div>
+
+        <div *ngIf="wine.hasProm" class="prices-box">
+            <p class="price-txt line-txt">R${{getNumberFormated(wine.regPrice)}}</p>
+
+            <div class="prom-box">
+        
+                <p class="prom-price-txt price-txt">R${{getNumberFormated(wine.promPrice)}}</p>
+                <div class="prom-percentage-box red-box">
+                    <p class="prom-percentage-txt">{{wine.promPercentage}}% OFF</p>
+                </div>
+        
+            </div>
         </div>
 
     </div>
@@ -39,17 +54,6 @@ class="product-box"
             <p *ngIf="wine.type == 'Vinho'">{{wine.category}}</p>
             <p *ngIf="wine.type == 'Vinho'">&#8226;</p>
             <p *ngIf="wine.type == 'Vinho'" class="hidden-txt">{{wine.classification}}</p>
-        </div>
-
-    </div>
-
-    <div *ngIf="wine.status == 'DISPONÍVEL' && !wine.hasProm" class="info-section-box">
-
-        <div class="prom-box">
-    
-            <img class="discount-img" src="../../../assets/discount.png" />
-            <p class="discount-txt">10% no consórcio</p>
-    
         </div>
 
     </div>
