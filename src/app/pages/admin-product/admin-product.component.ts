@@ -35,7 +35,7 @@ export class AdminProductComponent implements OnInit {
   description: string = '';
   type: string = 'Vinho';
   category: string = 'Tinto';
-  country: string = 'Brasil';
+  country: string = 'fd0b37d1-990d-4d0d-96b3-de083e517150';
   classification: string = 'Nature';
   size: string = '';
   quantity: number = 0;
