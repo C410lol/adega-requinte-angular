@@ -50,14 +50,11 @@
 }
 
 .desc-box {
-    width: 75%;
     height: 15px;
 
     display: flex;
     flex-direction: row;
     gap: 5px;
-
-    overflow: hidden;
 }
 
 .desc-box p {
