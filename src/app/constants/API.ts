@@ -3,13 +3,14 @@ import { HttpHeaders } from "@angular/common/http"
 const testApiUrl = 'http://localhost:8080';
 const developmentUrl = 'https://server.adegarequinte.com.br';
 
-const apiUrl = developmentUrl;
+const apiUrl = testApiUrl;
 
 export const ApiUrls = {
     winesUrl: `${apiUrl}/wines`,
     usersUrl: `${apiUrl}/users`,
     ordersUrl: `${apiUrl}/orders`,
     addressesUrl: `${apiUrl}/addresses`,
+    harmonizationsUrl: `${apiUrl}/harmonizations`,
     grapesUrl: `${apiUrl}/grapes`,
 }
 

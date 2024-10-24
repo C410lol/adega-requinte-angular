@@ -55,7 +55,7 @@ export class CartProductComponent implements OnInit {
 
         if (this.isUserMember && !this.cartProduct.wine.hasProm) {
           this.discountAppliedEvent.emit();
-          this.memberPrice = (this.cartProduct.wine.currentPrice * 90) / 100;
+          this.memberPrice = this.cartProduct.wine.memberPrice;
         } else this.memberPrice = this.cartProduct.wine.currentPrice;
         
         const totalPrice = this.memberPrice * this.cartProduct.quantity;

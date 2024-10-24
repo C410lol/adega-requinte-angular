@@ -67,12 +67,12 @@ export class AdminProductsComponent implements OnInit {
           return;
         }
 
-        if (res.body.value.empty) {
+        if (res.body.value.length < 1) {
           this.loadStatus = LoadStatus.EMPTY;
           return;
         }
 
-        this.products = res.body.value.content;
+        this.products = res.body.value;
         this.loadStatus = LoadStatus.LOADED;
 
       },

@@ -12,12 +12,13 @@ import { AppMessages } from '../../constants/Messages';
 import { LoadStatus } from '../../constants/LoadStatusEnum';
 import { BackComponent } from '../../components/back/back.component';
 import { ErrorComponent } from "../../components/error/error.component";
+import { HarmonizationsService } from '../../services/harmonizations.service';
 
 @Component({
   selector: 'app-admin-product',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule, DropdownComponent, BackComponent, ErrorComponent],
-  providers: [GrapesService, WinesService],
+  providers: [GrapesService, HarmonizationsService, WinesService],
   templateUrl: './admin-product.component.html',
   styleUrl: './admin-product.component.css'
 })
@@ -38,13 +39,18 @@ export class AdminProductComponent implements OnInit {
   classification: string = 'Nature';
   size: string = '';
   quantity: number = 0;
-  grape: string = '';
   hasProm: string = 'false';
   promPrice: string = '';
   price: string = '';
   status: string = 'DISPONÍVEL';
   images: string[] = [];
 
+  harmo: string = '';
+  isHarmoDropdownShown: boolean = false;
+  allHarmo: { name: string, value: string }[] = [];
+  selectedHarmos: { name: string, value: string }[] = [];
+
+  grape: string = '';
   isGrapesDropDownShown: boolean = false;
   allGrapes: { name: string, value: string }[] = [];
   selectedGrapes: { name: string, value: string }[] = [];
@@ -54,6 +60,7 @@ export class AdminProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private harmosService: HarmonizationsService,
     private grapesService: GrapesService,
     private winesService: WinesService,
     private dialogService: DialogService,
@@ -110,13 +117,19 @@ export class AdminProductComponent implements OnInit {
         this.hasProm = body.hasProm.toString();
         this.status = body.status;
 
-        if (body.category != null) this.category = body.category;
-        if (body.country != null) this.country = body.country;
-        if (body.classification != null) this.classification = body.classification;
+        if (body.category != null) this.category = body.category.replaceAll(' ', '_');
+        if (body.country != null) this.country = body.country.id;
+        if (body.classification != null) this.classification = body.classification.replaceAll(' ', '_');
+
         if (body.size != null) this.size = body.size;
+
         if (body.promPrice != null) this.promPrice = body.promPrice.toString();
 
         if (body.images != null) this.images = body.images;
+
+        if (body.harmonizationTags != null) {
+          this.selectedHarmos = body.harmonizationTags.map((e) => ({name: e.name, value: e.id}));
+        }
 
         if (body.grapes != null) {
           this.selectedGrapes = body.grapes.map((e) => ({ name: e.name, value: e.id }));
@@ -129,6 +142,18 @@ export class AdminProductComponent implements OnInit {
 
         console.error(err);
         this.dialogService.openDialogError(err.error.message);
+
+      }
+    });
+  }
+
+  findHarmonizationsByName(): void {
+    this.harmosService.findAllByName(this.harmo).subscribe({
+      next: (res) => {
+
+        if (!res.ok || res.body == null) return;
+
+        this.allHarmo = res.body.value.map((e) => ({ name: e.name, value: e.id }));
 
       }
     });
@@ -265,22 +290,31 @@ export class AdminProductComponent implements OnInit {
 
 
 
-  createSelectedGrape(): void {
-    this.selectedGrapes.forEach((e) => {
-      if (e.name == this.grape) throw new Error;
+  createSelectedElement(
+    array: {name: string, value: string}[], 
+    input: string
+  ): void {
+    array.forEach((e) => {
+      if (e.name == input) throw new Error;
     });
 
-    if (this.grape.trim().length < 1) return;
+    if (input.trim().length < 1) return;
 
-    this.selectedGrapes.push({ name: this.grape, value: '' });
+    array.push({name: input, value: ''});
   }
 
-  addSelectedGrape(item: { name: string, value: string }): void {
-    if (this.selectedGrapes.indexOf(item) == -1) this.selectedGrapes.push(item);
+  addSelectedElement(
+    array: {name: string, value: string}[], 
+    element: {name: string, value: string}
+  ): void {
+    if (array.indexOf(element) == -1) array.push(element);
   }
 
-  removeSelectedGrape(item: { name: string, value: string }): void {
-    this.selectedGrapes.splice(this.selectedGrapes.indexOf(item), 1);
+  removeSelectedElement(
+    array: {name: string, value: string}[], 
+    element: {name: string, value: string}
+  ): void {
+    array.splice(array.indexOf(element), 1);
   }
 
   
@@ -355,7 +389,8 @@ export class AdminProductComponent implements OnInit {
 
     if (this.type == 'Vinho' || this.type == 'Suco') {
       productDTO.size = this.size;
-      productDTO.country = this.country;
+      productDTO.countryId = this.country;
+      productDTO.harmonizations = this.selectedHarmos.map((e) => ({id: e.value, name: e.name}));
       productDTO.grapes = this.selectedGrapes.map((e) => ({ id: e.value, name: e.name }));
 
       if (this.type == 'Vinho') {
@@ -404,7 +439,13 @@ export class AdminProductComponent implements OnInit {
 
 
 
-  timeoutDropDown(): void {
+  harmosTimeoutDropDown(): void {
+    setTimeout(() => {
+      this.isHarmoDropdownShown = false;
+    }, 100)
+  }
+
+  grapesTimeoutDropDown(): void {
     setTimeout(() => {
       this.isGrapesDropDownShown = false;
     }, 100);

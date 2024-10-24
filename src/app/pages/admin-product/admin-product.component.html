@@ -83,12 +83,13 @@
                 <div class="input-box wrap-input-box">
                     <p class="input-title-txt">País:</p>
                     <select [(ngModel)]="country" class="input">
-                        <option>Brasil</option>
-                        <option>Argentina</option>
-                        <option>Chile</option>
-                        <option>Portugal</option>
-                        <option>Itália</option>
-                        <option>França</option>
+                        <option value="fd0b37d1-990d-4d0d-96b3-de083e517150">Brasil</option>
+                        <option value="0a349bfc-1e94-4c80-bc5c-9e60e2caf8f9">Argentina</option>
+                        <option value="44966b73-3954-4588-86ae-0fc1b8df308c">Chile</option>
+                        <option value="6404bf93-d6c3-455e-866b-5b9febd0e0a7">Portugal</option>
+                        <option value="5a3c5c05-f1eb-4a1d-bd56-65bf9d8b2793">Itália</option>
+                        <option value="c26d9393-e9d0-49ca-8f4e-d8c699d6bb81">França</option>
+                        <option value="b364b1ab-9d7a-414e-97b8-481dc2125529">Espanha</option>
                     </select>
                 </div>
 
@@ -107,6 +108,44 @@
 
             </div>
 
+
+
+
+
+
+
+
+            <div *ngIf="type == 'Vinho'" class="input-box">
+                <p class="input-title-txt">Tags de harmonização:</p>
+                <div class="grapes-input-box">
+                    <div
+                    *ngFor="let selectedHarmo of selectedHarmos"
+                    class="grape-box">
+                    <p>{{selectedHarmo.name}}</p>
+                    <p (click)="removeSelectedElement(selectedHarmos, selectedHarmo)" class="exclude-txt">&#10005;</p>
+                    </div>
+
+                    <input 
+                    [(ngModel)]="harmo" 
+                    (input)="findHarmonizationsByName()"
+                    (focus)="isHarmoDropdownShown = true"
+                    (blur)="harmosTimeoutDropDown()"
+                    class="input non-box-shadow" 
+                    />
+
+                    <div (click)="createSelectedElement(selectedHarmos, harmo)" class="grape-btn-box">
+                        <p class="grape-btn-txt">Adicionar</p>
+                    </div>
+                </div>
+
+                <app-dropdown 
+                [items]="allHarmo"
+                [isShown]="isHarmoDropdownShown"
+                (clickItem)="addSelectedElement(selectedHarmos, $event)"
+                />
+            </div>
+
+
             <div *ngIf="type == 'Vinho' || type == 'Suco'" class="input-box">
                 <p class="input-title-txt">Uvas:</p>
                 <div class="grapes-input-box">
@@ -114,18 +153,18 @@
                     *ngFor="let selectedGrape of selectedGrapes"
                     class="grape-box">
                     <p>{{selectedGrape.name}}</p>
-                    <p (click)="removeSelectedGrape(selectedGrape)" class="exclude-txt">&#10005;</p>
+                    <p (click)="removeSelectedElement(selectedGrapes, selectedGrape)" class="exclude-txt">&#10005;</p>
                     </div>
 
                     <input 
                     [(ngModel)]="grape" 
                     (input)="findGrapesByName()"
                     (focus)="isGrapesDropDownShown = true"
-                    (blur)="timeoutDropDown()"
+                    (blur)="grapesTimeoutDropDown()"
                     class="input non-box-shadow" 
                     />
 
-                    <div (click)="createSelectedGrape()" class="grape-btn-box">
+                    <div (click)="createSelectedElement(selectedGrapes, grape)" class="grape-btn-box">
                         <p class="grape-btn-txt">Adicionar</p>
                     </div>
                 </div>
@@ -133,9 +172,16 @@
                 <app-dropdown 
                 [items]="allGrapes"
                 [isShown]="isGrapesDropDownShown"
-                (clickItem)="addSelectedGrape($event)"
+                (clickItem)="addSelectedElement(selectedGrapes, $event)"
                 />
             </div>
+
+
+
+
+
+
+
 
             <div class="wrap-input-boxes">
 
@@ -176,9 +222,6 @@
                 </div>
 
             </div>
-
-
-
 
             <div class="btn-boxes">
                 <div (click)="saveBtnClick()" class="btn-box">

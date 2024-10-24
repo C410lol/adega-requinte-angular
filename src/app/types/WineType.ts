@@ -1,14 +1,23 @@
+import { CountryType } from "./CountryType"
 import { GrapeType } from "./GrapeType"
+import { HarmonizationType } from "./HarmonizationType"
 
 export type WineType = {
     id: string,
     name: string,
     description: string,
+
+
     type: string,
     category?: string,
-    country?: string,
+    country?: CountryType,
     classification?: string,
+    harmonizationTags: HarmonizationType[],
+
+
     size?: string,
+
+
     quantity: number,
     currentPrice: number,
     regPrice: number,
@@ -18,5 +27,7 @@ export type WineType = {
     promPrice?: number,
     status: string,
     images?: string[],
+
+
     grapes?: GrapeType[],
 }

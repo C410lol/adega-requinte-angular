@@ -30,10 +30,6 @@ export class ProductComponent {
     return this.wine.images[0];
   }
 
-  getMemberPrice(): number {
-    return parseFloat(((this.wine.regPrice * 90) / 100).toFixed(2));
-  }
-
   getNumberFormated(number?: number): string {
     return formatPriceNumber(number);
   }

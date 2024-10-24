@@ -22,30 +22,61 @@
                 <p class="desc-txt ">{{wine.description}}</p>
             </div>
 
+            <div *ngIf="wine.harmonizationTags != null && wine.harmonizationTags.length > 0" class="subinfo-box">
+                <img  class="subinfo-img" src="../../../assets/harmonization.png"/>
+                <div class="subinfo-txts">
+                    <p class="subinfo-title">Harmonização</p>
+                    <p class="subinfo-desc">{{toStringList(wine.harmonizationTags)}}</p>
+                </div>
+            </div>
+
             <div class="subinfo-boxes">
                 <div class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/info.png">
-                    <p class="subinfo-txt ">{{wine.type}}</p>
+                    <img  class="subinfo-img" src="../../../assets/info.png"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">Tipo</p>
+                        <p class="subinfo-desc">{{wine.type}}</p>
+                    </div>
                 </div>
-                <div *ngIf="wine.type == 'Vinho'" class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/wine.png"/>
-                    <p class="subinfo-txt ">{{wine.category}}</p>
+
+                <div *ngIf="wine.category != null" class="subinfo-box">
+                    <img  class="subinfo-img" src="../../../assets/wine.png"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">Categoria</p>
+                        <p class="subinfo-desc">{{wine.category}}</p>
+                    </div>
                 </div>
-                <div *ngIf="wine.type == 'Vinho'" class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/label.png"/>
-                    <p class="subinfo-txt ">{{wine.classification}}</p>
+
+                <div *ngIf="wine.classification != null" class="subinfo-box">
+                    <img  class="subinfo-img" src="../../../assets/label.png"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">Classificação</p>
+                        <p class="subinfo-desc">{{wine.classification}}</p>
+                    </div>
                 </div>
-                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/grapes.png"/>
-                    <p class="subinfo-txt ">{{grapes}}</p>
+
+                <div *ngIf="wine.grapes != null && wine.grapes.length > 0" class="subinfo-box">
+                    <img  class="subinfo-img" src="../../../assets/grapes.png"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">Uvas</p>
+                        <p class="subinfo-desc">{{toStringList(wine.grapes)}}</p>
+                    </div>
                 </div>
-                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/location.png"/>
-                    <p class="subinfo-txt ">{{wine.country}}</p>
+
+                <div *ngIf="wine.size != null" class="subinfo-box">
+                    <img  class="subinfo-img" src="../../../assets/jar.png"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">Volume</p>
+                        <p class="subinfo-desc">{{wine.size}}</p>
+                    </div>
                 </div>
-                <div *ngIf="wine.type == 'Vinho' || wine.type == 'Suco'" class="subinfo-box">
-                    <img class="subinfo-img" src="../../../assets/jar.png"/>
-                    <p class="subinfo-txt ">{{wine.size}}</p>
+
+                <div *ngIf="wine.country != null" class="subinfo-box">
+                    <img  class="subinfo-img flag-img" [src]="wine.country.imageURL"/>
+                    <div class="subinfo-txts">
+                        <p class="subinfo-title">País</p>
+                        <p class="subinfo-desc flag-txt">{{wine.country.name}}</p>
+                    </div>
                 </div>
             </div>
 
@@ -69,8 +100,8 @@
                     </div>
 
                     <div *ngIf="!wine.hasProm" class="prices-box column-box">
-                        <p class="price-txt">R${{formatPriceNumber(getMemberDiscountPrice())}}</p>
-                        <p class="price-txt smaller-txt"> R${{formatPriceNumber(wine.regPrice)}} <span class="span-txt">preço regular</span></p>
+                        <p class="price-txt">R${{formatPriceNumber(wine.memberPrice)}}</p>
+                        <p class="price-txt smaller-txt"> R${{formatPriceNumber(wine.regPrice)}} <span class="span-txt">não consorciado</span></p>
                     </div>
 
                     <div class="btn-boxes">

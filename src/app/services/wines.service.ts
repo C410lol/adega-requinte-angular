@@ -62,12 +62,12 @@ export class WinesService {
 
   getAllByText(
     text?: string
-  ): Observable<HttpResponse<ResponseReturn<PageType<WineType>>>> {
+  ): Observable<HttpResponse<ResponseReturn<WineType[]>>> {
     let url = `${this.winesUrl}/all-by-text`;
 
     if (text != null && text.trim().length > 0) url += `?text=${text}`;
 
-    return this.httpClient.get<ResponseReturn<PageType<WineType>>>(
+    return this.httpClient.get<ResponseReturn<WineType[]>>(
       url,
       {
         headers: AuthorizationHeader(),

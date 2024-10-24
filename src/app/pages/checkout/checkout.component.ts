@@ -168,7 +168,7 @@ export class CheckoutComponent implements OnInit {
       this.subtotalPrice += e.subtotalPrice;
       if (this.isUserMember && !e.wine.hasProm) {
         this.isDiscountApplied = true;
-        this.totalPrice += ((e.subtotalPrice * 90) / 100);
+        this.totalPrice += e.quantity * e.wine.memberPrice;
       } else this.totalPrice += e.subtotalPrice;
     });
 
@@ -182,10 +182,6 @@ export class CheckoutComponent implements OnInit {
 
   removeDeliveryTax(): void {
     this.totalPrice = this.lastTotalPrice;
-  }
-
-  getPriceRounded(price: number): number {
-    return parseFloat(price.toFixed(2));
   }
 
   formatPriceNumber(number?: number): string {

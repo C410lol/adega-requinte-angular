@@ -17,16 +17,16 @@ class="product-box"
     <div *ngIf="wine.status == 'DISPONÍVEL'" class="info-section-box">
 
         <div *ngIf="!wine.hasProm" class="prices-box">
-            <p class="price-txt smaller-txt">R${{getNumberFormated(wine.regPrice)}} regular</p>
-
             <div class="prom-box">
         
-                <p class="prom-price-txt price-txt">R${{getNumberFormated(getMemberPrice())}}</p>
+                <p class="prom-price-txt price-txt">R${{getNumberFormated(wine.memberPrice)}}</p>
                 <div class="prom-percentage-box green-box">
-                    <p class="prom-percentage-txt">Consórcio</p>
+                    <p class="prom-percentage-txt">Consorciado</p>
                 </div>
         
             </div>
+
+            <p class="price-txt smaller-txt">R${{getNumberFormated(wine.regPrice)}} não consorciado</p>
         </div>
 
         <div *ngIf="wine.hasProm" class="prices-box">

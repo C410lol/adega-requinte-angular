@@ -70,7 +70,6 @@ export class WineComponent implements OnInit {
         this.wine = res.body;
 
         if (res.body.images != null) this.seletedImage = res.body.images[0];
-        this.getGrapes();
 
         this.loadStatus = LoadStatus.LOADED;
 
@@ -152,11 +151,11 @@ export class WineComponent implements OnInit {
     this.selectedImageIndex--;
   }
 
-  getGrapes(): void {
-    if (this.wine.grapes == null) return;
+  toStringList(array?: any[]): string | void {
+    if (array == null) return;
 
-    if (this.wine.grapes.length < 1) return;
-    this.grapes = this.wine.grapes.map((e) => e.name).join(', ');
+    if (array.length < 1) return;
+    return array.map((e) => e.name).join(', ');
   }
 
 
@@ -169,10 +168,6 @@ export class WineComponent implements OnInit {
 
 
 
-
-  getMemberDiscountPrice(): number {
-    return parseFloat(((this.wine.regPrice * 90) / 100).toFixed(2));
-  }
 
   formatPriceNumber(number?: number): string {
     return formatPriceNumber(number);
