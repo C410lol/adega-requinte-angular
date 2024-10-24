@@ -41,11 +41,19 @@ export class CreateComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getLogin();
     this.getRedirectParam();
   }
 
 
 
+
+  getLogin(): void {
+    const authLStorage = localStorage.getItem('auth');
+    if (authLStorage != null) {
+      this.router.navigate(['/']);
+    }
+  }
 
   getRedirectParam(): void {
     this.activatedRoute.queryParams.subscribe({
