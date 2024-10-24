@@ -160,6 +160,10 @@ export class AdminOrderComponent implements OnInit {
     return false;
   }
 
+  isUserMember(member: boolean): string {
+    return member ? 'Consorciado' : 'Não consorciado';
+  }
+
 
 
 
