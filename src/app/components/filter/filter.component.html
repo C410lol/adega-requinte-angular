@@ -127,6 +127,13 @@
                 [checked]="isInCountries('França')"
                 />
 
+                <app-checkbox 
+                (check)="countriesCheck($event)" 
+                [placeholder]="'Espanhóis'" 
+                [value]="'Espanha'" 
+                [checked]="isInCountries('Espanha')"
+                />
+
             </div>
         </div>
     
