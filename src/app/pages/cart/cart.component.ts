@@ -8,11 +8,12 @@ import { ErrorComponent } from "../../components/error/error.component";
 import { UserType } from '../../types/UserType';
 import { CartDTO } from '../../dtos/CartDTO';
 import { formatPriceNumber } from '../../constants/Utils';
+import { BackComponent } from "../../components/back/back.component";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, RouterModule, CartProductComponent, ErrorComponent],
+  imports: [CommonModule, RouterModule, CartProductComponent, ErrorComponent, BackComponent],
   templateUrl: './cart.component.html',
   styleUrls: [
     './cart.component.css',
