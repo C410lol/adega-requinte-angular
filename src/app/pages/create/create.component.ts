@@ -13,7 +13,10 @@ import { AppMessages } from '../../constants/Messages';
   imports: [FormsModule, RouterModule, HttpClientModule, BackComponent],
   providers: [UsersService],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.css'
+  styleUrls: [
+    './phone-input-styles.css',
+    './create.component.css'
+  ]
 })
 export class CreateComponent implements OnInit {
 
@@ -83,7 +86,7 @@ export class CreateComponent implements OnInit {
     const loadingDialog = this.dialogService.openLoadingDialog();
 
     this.usersService.createUser(
-      { name: this.name, email: this.email, phone: this.phone, password: this.password }
+      { name: this.name, email: this.email, phone: '+55 ' + this.phone, password: this.password }
     ).subscribe({
       next: (res) => {
 
@@ -132,6 +135,32 @@ export class CreateComponent implements OnInit {
       this.confPassword.trim().length < 1
     ) return false;
     return true;
+  }
+
+
+
+
+  phoneInputChange(input: string): void {
+    let rawInput = input.replace(/\D/g, '');
+    let newInput = '';
+    
+    if (rawInput.length > 0) newInput = '(' + rawInput;
+
+    if (rawInput.length > 2) {
+      const dddTxt = newInput.slice(0, 3);
+      const restTxt = newInput.slice(3);
+
+      newInput = dddTxt + ') ' + restTxt;
+    }
+
+    if (rawInput.length > 7) {
+      const leftTxt = newInput.slice(0, 10);
+      const rightTxt = newInput.slice(10);
+
+      newInput = leftTxt + '-' + rightTxt;
+    }
+
+    this.phone = newInput;
   }
 
 

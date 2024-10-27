@@ -15,7 +15,12 @@
 
         <input [(ngModel)]="name" class="input" type="text" placeholder="Nome e Sobrenome"/>
         <input [(ngModel)]="email" class="input" type="text" placeholder="Email"/>
-        <input [(ngModel)]="phone" class="input" type="tel" placeholder="Celular"/>
+
+        <div class="phone-input-box">
+            <div class="phone-ddd-box"><p>+55</p></div>
+            <input (input)="phoneInputChange(phone)" [(ngModel)]="phone" class="phone-input" type="tel" placeholder="Celular"/>
+        </div>
+
         <input [(ngModel)]="password" class="input" type="password" placeholder="Senha"/>
         <input [(ngModel)]="confPassword" class="input" type="password" placeholder="Confirme a senha"/>
 
