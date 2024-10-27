@@ -28,15 +28,7 @@ export class AdminOrderComponent {
 
 
 
-  getFormatedDate(): string {
-    return this.order.date.split('-').reverse().join('/');
-  }
-
-  getFormatedEnum(string: string): string {
-    return string[0] + string.slice(1).toLowerCase();
-  }
-
-  formatPriceNumber(number?: number): string {
+ formatPriceNumber(number?: number): string {
     return formatPriceNumber(number);
   }
 

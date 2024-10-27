@@ -7,7 +7,22 @@
 
     <div *ngSwitchCase="1" class="content-box">
 
-        <p class="title-txt">Pedido #{{order.orderNumber}}</p>
+        <div class="header-box">
+
+            <p class="title-txt">Pedido #{{order.orderNumber}}</p>
+            <div class="status-box">
+                <img class="status-img" [src]="getStatusImgSrc()"/>
+                <p class="status-txt">{{order.status}}</p>
+            </div>
+
+        </div>
+
+
+
+        <hr class="division-line" />
+
+
+
 
         <div class="info-box">
 
@@ -26,11 +41,11 @@
 
                 <div class="payment-and-address-boxes">
 
-                    <div *ngIf="order.payment != 'DINHEIRO'" [ngSwitch]="order.payment" class="payment-details-box">
+                    <div *ngIf="order.payment != 'Dinheiro'" [ngSwitch]="order.payment" class="payment-details-box">
 
                         <p class="products-title-txt">Pagamento</p>
 
-                        <div *ngSwitchCase="'PIX'" class="subinfo-boxes">
+                        <div *ngSwitchCase="'Pix'" class="subinfo-boxes">
                     
                             <div class="subinfo-box">
                                 <p class="subinfo-point">&#8226;</p>
@@ -44,7 +59,7 @@
                             
                         </div>
         
-                        <div *ngSwitchCase="'CARTÃO'" class="subinfo-boxes">
+                        <div *ngSwitchCase="'Cartão'" class="subinfo-boxes">
                             
                             <div class="subinfo-box">
                                 <p class="subinfo-point">&#8226;</p>
@@ -59,7 +74,7 @@
 
                         <p class="products-title-txt">Endereço</p>
 
-                        <div *ngSwitchCase="'PEGAR'" class="subinfo-boxes">
+                        <div *ngSwitchCase="'Pegar'" class="subinfo-boxes">
                     
                             <div class="subinfo-box">
                                 <p class="subinfo-point">&#8226;</p>
@@ -73,7 +88,7 @@
                             
                         </div>
 
-                        <div *ngSwitchCase="'ENTREGAR'" class="subinfo-boxes">
+                        <div *ngSwitchCase="'Entregar'" class="subinfo-boxes">
 
                             <p class="address-title-txt">{{order.address?.name}}</p>
     
@@ -99,7 +114,14 @@
                 </div>
         
             </div>
+
+
+
+
         
+
+
+
             <div class="payment-box">
         
                 <p class="payment-title-txt montserrat-font">Informações</p>
@@ -109,32 +131,25 @@
                     <div class="price-box">
     
                         <p class="montserrat-font">Data</p>
-                        <p class="montserrat-font">{{getFormatedDate()}}</p>
-        
-                    </div>
-
-                    <div class="price-box">
-    
-                        <p class="montserrat-font">Status</p>
-                        <p class="montserrat-font">{{getFormatedEnum(order.status)}}</p>
+                        <p class="montserrat-font">{{order.date}}</p>
         
                     </div>
 
                     <div class="price-box">
     
                         <p class="montserrat-font">Envio</p>
-                        <p class="montserrat-font">{{getFormatedEnum(order.delivery)}}</p>
+                        <p class="montserrat-font">{{order.delivery}}</p>
         
                     </div>
 
                     <div class="price-box">
     
                         <p class="montserrat-font">Pagamento</p>
-                        <p class="montserrat-font">{{getFormatedEnum(order.payment)}}</p>
+                        <p class="montserrat-font">{{order.payment}}</p>
         
                     </div>
 
-                    <div *ngIf="order.payment == 'DINHEIRO'" class="price-box">
+                    <div *ngIf="order.payment == 'Dinheiro'" class="price-box">
     
                         <p class="montserrat-font">Troco</p>
                         <p class="montserrat-font">R${{order.exchange}}</p>

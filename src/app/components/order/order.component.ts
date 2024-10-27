@@ -16,6 +16,8 @@ import { formatPriceNumber } from '../../constants/Utils';
 })
 export class OrderComponent {
 
+  @Input() navigateUrl?: boolean;
+
   @Input() order = {} as OrderType;
 
 
@@ -28,14 +30,6 @@ export class OrderComponent {
 
 
 
-  getFormatedDate(): string {
-    return this.order.date.split('-').reverse().join('/');
-  }
-
-  getFormatedEnum(string: string): string {
-    return string[0] + string.slice(1).toLowerCase();
-  }
-
   formatPriceNumber(number?: number): string {
     return formatPriceNumber(number);
   }
@@ -44,6 +38,7 @@ export class OrderComponent {
 
 
   goToOrder(): void {
+    if (this.navigateUrl != null && this.navigateUrl) return;
     this.router.navigate([`${this.router.url}/${this.order.id}`]);
   }
 

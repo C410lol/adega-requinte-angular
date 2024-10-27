@@ -4,7 +4,7 @@ import { LoadStatus } from '../../constants/LoadStatusEnum';
 import { OrdersService } from '../../services/orders.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { OrderProductComponent } from '../../components/order-product/order-product.component';
 import { BackComponent } from "../../components/back/back.component";
 import { DialogService } from '../../services/dialog.service';
@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private location: Location,
     private ordersService: OrdersService,
     private dialogService: DialogService
   ) { }
@@ -106,7 +106,8 @@ export class OrderComponent implements OnInit {
         loadingDialog.close();
 
         this.dialogService.openDialogSuccess('Pedido cancelado com sucesso!');
-        this.router.navigate(['/orders']);
+
+        this.location.back();
 
       },
       error: (err) => {
@@ -136,16 +137,24 @@ export class OrderComponent implements OnInit {
 
 
 
-  getFormatedDate(): string {
-    return this.order.date.split('-').reverse().join('/');
-  }
-
-  getFormatedEnum(string: string): string {
-    return string[0] + string.slice(1).toLowerCase();
-  }
-
   formatPriceNumber(number?: number): string {
     return formatPriceNumber(number);
+  }
+
+
+
+
+  getStatusImgSrc(): string {
+    switch(this.order.status) {
+      case 'CONFIRMANDO': 
+        return '../../../assets/status_yellow.png';
+      case 'CONFIRMADO': 
+        return '../../../assets/status_green.png';  
+      case 'CANCELADO':
+        return '../../../assets/status_red.png';
+      default: 
+        return '../../../assets/status_normal.png';
+    }
   }
 
 }

@@ -8,7 +8,7 @@
             <img *ngIf="order.status == 'CONFIRMADO'" class="status-img" src="../../../assets/status_green.png" />
             <img *ngIf="order.status == 'CONCLUÍDO'" class="status-img" src="../../../assets/status_normal.png" />
 
-            <p class="status-txt">{{getFormatedEnum(order.status)}}</p>
+            <p class="status-txt">{{order.status}}</p>
         </div>
     </div>
 
@@ -40,11 +40,11 @@
         <div class="info-box right-info-box">
 
             <div class="subinfo-box">
-                <p class="info-title-txt">{{getFormatedDate()}}</p>
+                <p class="info-title-txt">{{order.date}}</p>
 
                 <div class="payment-box">
-                    <p>{{getFormatedEnum(order.delivery)}}</p>
-                    <p>{{getFormatedEnum(order.payment)}}</p>
+                    <p>{{order.delivery}}</p>
+                    <p>{{order.payment}}</p>
                 </div>
             </div>
 
