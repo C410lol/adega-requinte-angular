@@ -50,6 +50,23 @@ export class UsersService {
 
   // ------------------------------------------------------------------ //
 
+  
+  getClients(
+    text?: string
+  ): Observable<HttpResponse<ResponseReturn<UserType[]>>> {
+    let url = `${this.usersUrl}/clients`;
+
+    if (text != null && text.length > 0) url += `?text=${text}`;
+
+    return this.httpClient.get<ResponseReturn<UserType[]>>(
+      url,
+      {
+        headers: AuthorizationHeader(),
+        observe: 'response'
+      }
+    );
+  }
+
 
   getById(
     userId: string
