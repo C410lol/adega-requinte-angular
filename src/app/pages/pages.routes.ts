@@ -10,6 +10,8 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
 import { AdminProductComponent } from './admin-product/admin-product.component';
 import { AdminOrdersComponent } from './admin-orders/admin-orders.component';
 import { AdminOrderComponent } from './admin-order/admin-order.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
 
 export const pagesRoutes: Routes = [
     {
@@ -78,6 +80,43 @@ export const pagesRoutes: Routes = [
 
                     {
                         path: ':orderId', component: AdminOrderComponent
+                    }
+
+                ]
+            }
+
+        ]
+    },
+
+
+
+
+    {
+        path: 'admin-users', children: [
+
+            { 
+                path: '', component: AdminUsersComponent 
+            },
+            {
+                path: 'user', children: [
+
+                    {
+                        path: ':userId', children: [
+
+                            {
+                                path: '', component: AdminUserComponent
+                            },
+                            {
+                                path: 'orders', children: [
+
+                                    {
+                                        path: ':orderId', component: OrderComponent
+                                    }
+
+                                ]
+                            }
+
+                        ]
                     }
 
                 ]
