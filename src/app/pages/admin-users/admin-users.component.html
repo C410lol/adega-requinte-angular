@@ -1,0 +1,28 @@
+<div [ngSwitch]="loadStatus" class="admin-users-box page">
+
+    <p class="page-title-txt">Gerenciar Clientes</p>
+
+    <input *ngIf="loadStatus != 3" (input)="userInputChange()" [(ngModel)]="userInput" class="input" placeholder="Procurar cliente..." /> 
+
+
+    <div *ngSwitchCase="1" class="content-box">
+
+        <div class="products-box no-margin-top">
+
+            <app-admin-user 
+            *ngFor="let user of users"
+            [user]="user"
+            />
+
+        </div>
+
+    </div>
+
+
+
+
+    <app-error *ngSwitchCase="0" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="2" [loadStatus]="loadStatus" />
+    <app-error *ngSwitchCase="3" [loadStatus]="loadStatus" />
+
+</div>

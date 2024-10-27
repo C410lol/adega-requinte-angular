@@ -1,0 +1,22 @@
+@media screen and (width <= 1100px){
+
+    .content-box {
+        gap: 25px;
+    }
+
+    .user-info-box,
+    .user-orders-box {
+        flex: 0 0 100%;
+    }
+   
+
+}
+
+@media screen and (width <= 500px){
+
+    .bold-txt {
+        max-width: 250px;
+    }
+   
+
+}

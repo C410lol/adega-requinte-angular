@@ -1,0 +1,23 @@
+<div (click)="goToUserPage()" class="admin-user-box">
+
+    <div class="header-box">
+        <p class="header-title-txt hidden-txt">{{user.name}}</p>
+    </div>
+
+    <hr class="division-line" />
+
+    <div class="info-box">
+
+        <img class="product-img" src="../../../assets/user.png" />
+
+        <div class="product-desc-box">
+            <p class="product-name-txt hidden-txt">{{user.email}}</p>
+        </div>
+
+        <p class="bold-txt">{{user.phone}}</p>
+        <p [ngClass]="user.member ? 'green-txt' : 'red-txt'" class="promotional-txt">{{isMember(user.member)}}</p>
+        <p>Pedidos: <span class="bold-txt">{{user.orders}}</span></p>
+
+    </div>
+
+</div>

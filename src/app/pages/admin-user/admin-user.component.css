@@ -1,0 +1,30 @@
+.content-box {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+}
+
+
+
+
+
+
+
+
+.bold-txt {
+    text-align: center;
+
+    font-weight: 500;
+}
+
+.green-txt {
+    color: #03a678;
+}
+
+.red-txt {
+    color: #e71717;
+}

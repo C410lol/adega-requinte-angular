@@ -1,0 +1,115 @@
+.admin-user-box {
+    width: 250px;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border: 1px solid #dadada;
+    border-radius: 5px;
+
+    box-shadow: 0px 0px 10px 2.5px rgba(0, 0, 0, 0.1);
+
+    background-color: #ffffff;
+
+    cursor: pointer;
+}
+
+.admin-user-box:hover {
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+.header-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-img {
+    width: 25px;
+    height: 25px;
+}
+
+.header-title-txt {
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+.info-box {
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-img {
+    width: 75px;
+}
+
+
+
+
+
+
+.product-desc-box {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-name-txt {
+    max-width: 100%;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+.promotional-txt {
+    font-weight: 500;
+}
+
+.red-txt {
+    color: #e71717;
+}
+
+.green-txt {
+    color: #03a678;
+}
+
+.price-txt {
+    color: #03a678;
+    font-weight: 500;
+}
+
+
+
+
+.bold-txt {
+    font-weight: 500;
+}

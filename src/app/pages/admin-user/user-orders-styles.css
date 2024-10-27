@@ -1,0 +1,35 @@
+.user-orders-box {
+    width: 100%;
+    height: fit-content;
+
+    padding: 20px;
+
+    flex: 0 0 50%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    border-radius: 2.5px;
+
+    background-color: white;
+
+    box-shadow: 2.5px 2.5px 7.5px 2.5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+.order-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.order-boxes * {
+    max-width: fit-content;
+}
