@@ -5,5 +5,6 @@ export type UserType = {
     phone: string,
     password: string,
     member: boolean,
+    orders: number,
     role: string 
 }
