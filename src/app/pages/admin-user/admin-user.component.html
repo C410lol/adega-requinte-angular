@@ -1,0 +1,76 @@
+<app-back />
+
+
+
+
+<div class="admin-user-box page">
+
+    <div class="content-box">
+
+        <div class="user-info-box">
+
+            <img class="user-img" src="../../../assets/user.png" />
+
+            <p class="bold-txt">{{user.name}}</p>
+
+            <div class="user-subinfo-boxes">
+
+                <div class="user-subinfo-box">
+                    <p>Id</p>
+                    <p class="bold-txt hidden-txt">{{user.id}}</p>
+                </div>
+
+                <hr class="division-line" />
+
+                <div class="user-subinfo-box">
+                    <p>Email</p>
+                    <p class="bold-txt hidden-txt">{{user.email}}</p>
+                </div>
+
+                <hr class="division-line" />
+
+                <div class="user-subinfo-box">
+                    <p>Celular</p>
+                    <p class="bold-txt hidden-txt">{{user.phone}}</p>
+                </div>
+
+                <hr class="division-line" />
+
+                <div class="user-subinfo-box">
+                    <p>Consórcio</p>
+                    <p [ngClass]="user.member ? 'green-txt' : 'red-txt'" class="bold-txt">{{isUserMember()}}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="user-orders-box">
+
+            <p>Pedidos: <span class="bold-txt">{{user.orders}}</span></p>
+
+            <hr class="division-line" />
+
+            <div class="order-boxes">
+
+                <app-order 
+                *ngFor="let order of userOrders"
+                (click)="goToUserOrder(order.id)"
+                [navigateUrl]="true"
+                [order]="order"
+                />
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
